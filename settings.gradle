@@ -1,2 +1,2 @@
-include ':app', ':core-api', ':common-utils', ':common-extension', ':core-android', ':common-plugins'
+include ':app', ':core-api', ':common-utils', ':common-extension', ':core-android', ':common-navigation', ':common-plugins'
 rootProject.name='simpleweather'

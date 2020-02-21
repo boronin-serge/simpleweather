@@ -12,9 +12,9 @@ dependencies {
     def dependencies = rootProject.ext.dependencies
     def developmentDependencies = rootProject.ext.developmentDependencies
 
-    implementation project(':core-android')
-    implementation project(':common-utils')
-    implementation project(':common-extension')
+    // Common modules
+    implementation project(':core-api')
+
     implementation dependencies.appcompat
 
     // develop
