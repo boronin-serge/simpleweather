@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.boronin.common.navigation.BackPressDelegate
 import ru.boronin.common.navigation.BackPressDelegateImpl
+import ru.boronin.simpleweather.App
 import ru.boronin.simpleweather.di.AppComponent
 
 /**
@@ -14,7 +15,7 @@ abstract class BaseActivity : AppCompatActivity(), BackPressDelegate by BackPres
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //initDagger((application as ru.boronin.simpleweather.App).appComponent)
+        initDagger((application as App).appComponent)
     }
 
     override fun onDestroy() {

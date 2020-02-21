@@ -14,6 +14,10 @@ class AppNavigatorHandlerImpl(
     private val containerId: Int
 ) : NavigatorHandler {
 
+
+    private val inAnimator = android.R.animator.fade_in
+    private val outAnimator = android.R.animator.fade_out
+
     override fun open(deepLink: String) {
         throw UnsupportedOperationException()
     }
@@ -90,9 +94,13 @@ class AppNavigatorHandlerImpl(
     }
 
     fun getLastFragment(): Fragment? {
-        val index = max(getStackSize() - 1, 0)
-        val tag =  fragmentManager.getBackStackEntryAt(index).name
-        return fragmentManager.findFragmentByTag(tag)
+        val index =  getStackSize() - 1
+        return if (index > -1) {
+            val tag =  fragmentManager.getBackStackEntryAt(index).name
+            fragmentManager.findFragmentByTag(tag)
+        } else {
+            null
+        }
     }
 
     // region private
@@ -105,6 +113,7 @@ class AppNavigatorHandlerImpl(
         }
 
         fragmentManager.beginTransaction()
+            .setCustomAnimations(inAnimator, outAnimator)
             .add(containerId, fragment, notEmptyTag)
             .addToBackStack(notEmptyTag)
             .commit()
@@ -118,6 +127,7 @@ class AppNavigatorHandlerImpl(
         }
 
         fragmentManager.beginTransaction()
+            .setCustomAnimations(inAnimator, outAnimator)
             .replace(containerId, fragment, notEmptyTag)
             .addToBackStack(notEmptyTag)
             .commit()
