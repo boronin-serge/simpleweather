@@ -20,5 +20,7 @@ interface ActivityComponent {
         ): ActivityComponent
     }
 
+    fun homeFactory(): HomeComponent.Factory
+
     fun inject(activity: MainActivity)
 }
