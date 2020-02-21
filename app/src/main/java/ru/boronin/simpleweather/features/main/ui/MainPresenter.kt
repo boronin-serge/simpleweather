@@ -10,6 +10,6 @@ class MainPresenter @Inject constructor(
     private val navigator: MainNavigator
 ) {
     fun init() {
-
+        navigator.openHome()
     }
 }

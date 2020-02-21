@@ -3,6 +3,7 @@ package ru.boronin.simpleweather.di
 import androidx.fragment.app.FragmentActivity
 import dagger.BindsInstance
 import dagger.Subcomponent
+import ru.boronin.simpleweather.features.home.di.HomeComponent
 import ru.boronin.simpleweather.features.main.ui.MainActivity
 
 /**
