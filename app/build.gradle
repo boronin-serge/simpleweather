@@ -38,6 +38,10 @@ dependencies {
     implementation developmentDependencies.coreKtx
     implementation dependencies.constraintlayout
 
+    // Dagger
+    implementation developmentDependencies.dagger
+    implementation developmentDependencies.daggerCompiler
+
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.androidJunit
     androidTestImplementation testDependencies.espresso
