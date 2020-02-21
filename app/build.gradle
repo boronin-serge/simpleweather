@@ -33,14 +33,25 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation developmentDependencies.kotlinStdlibJdk7
+    // Core modules
+    implementation project(':core-api')
+    implementation project(':core-android')
+    implementation project(':common-utils')
+    implementation project(':common-plugins')
+    implementation project(':common-navigation')
+    implementation project(':common-extension')
+
+    implementation dependencies.rxJava
     implementation dependencies.appcompat
-    implementation developmentDependencies.coreKtx
+    implementation dependencies.material
     implementation dependencies.constraintlayout
+
+    implementation developmentDependencies.coreKtx
+    implementation developmentDependencies.kotlinStdlibJdk7
 
     // Dagger
     implementation developmentDependencies.dagger
-    implementation developmentDependencies.daggerCompiler
+    kapt developmentDependencies.daggerCompiler
 
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.androidJunit
