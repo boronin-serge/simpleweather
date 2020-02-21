@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    def ext = rootProject.ext
+
+    compileSdkVersion ext.androidCompileSdkVersion
+    defaultConfig { minSdkVersion ext.androidMinSdkVersion }
+}
+
+dependencies {
+    def dependencies = rootProject.ext.dependencies
+    def developmentDependencies = rootProject.ext.developmentDependencies
+
+    // Common extension
+    implementation project(':common-utils')
+
+    // Ui
+    implementation dependencies.appcompat
+    implementation dependencies.chromeCustomTabs
+
+    // develop
+    implementation developmentDependencies.annotation
+    implementation developmentDependencies.coreKtx
+    implementation developmentDependencies.kotlinStdlibJdk7
+}
