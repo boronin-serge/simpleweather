@@ -1,9 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@color/colorAccent">
+  android:background="@color/colorAccent"
+  android:orientation="vertical">
+
+  <TextView
+    android:id="@+id/day"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:textColor="@android:color/white"
+    android:textSize="28sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toTopOf="@id/tempGroup"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:text="Today" />
+
+  <TextView
+    android:id="@+id/weatherDesc"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="@android:color/white"
+    android:textSize="20sp"
+    android:layout_marginBottom="64dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/tomorrow"
+    tools:text="Sunny" />
+
+  <LinearLayout
+    android:id="@+id/tempGroup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="16dp"
+    app:layout_constraintBottom_toTopOf="@id/weatherDesc"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+    <ImageView
+      android:id="@+id/logo"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:src="@drawable/ic_wb_sunny_black_24dp" />
+
+    <TextView
+      android:id="@+id/temperature"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_vertical"
+      android:layout_marginStart="8dp"
+      android:textColor="@android:color/white"
+      android:textSize="64sp"
+      android:textStyle="bold"
+      tools:text="25°" />
+
+  </LinearLayout>
+
+  <TextView
+    android:id="@+id/location"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="48dp"
+    android:textSize="24sp"
+    tools:text="London,\nUnited Kingdom"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+    android:id="@+id/date"
+    style="@style/wrapContentStyle"
+    android:layout_marginTop="8dp"
+    app:layout_constraintStart_toStartOf="@+id/location"
+    app:layout_constraintTop_toBottomOf="@+id/location"
+    tools:text="Sat, 6 Oct" />
+
+  <TextView
+    android:id="@+id/today"
+    android:text="@string/home_today"
+    style="@style/dayTypeStyle"
+    app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+    app:layout_constraintEnd_toStartOf="@+id/tomorrow"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+    android:id="@+id/tomorrow"
+    android:text="@string/home_tomorrow"
+    style="@style/dayTypeStyle"
+    app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+    app:layout_constraintStart_toEndOf="@+id/today" />
+
+  <TextView
+    android:id="@+id/nextSevenDays"
+    android:text="@string/home_nextSevenDays"
+    style="@style/dayTypeStyle"
+    app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+    app:layout_constraintStart_toEndOf="@+id/tomorrow" />
+
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="64dp"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:listitem="@layout/support_simple_spinner_dropdown_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
