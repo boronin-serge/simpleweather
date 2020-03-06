@@ -41,6 +41,12 @@ dependencies {
     implementation project(':common-navigation')
     implementation project(':common-extension')
 
+    // network
+    implementation dependencies.retrofit
+    implementation dependencies.retrofitLogging
+    implementation dependencies.retrofitAdapterRxJava
+    implementation dependencies.gsonRetrofitConverter
+
     implementation dependencies.rxJava
     implementation dependencies.appcompat
     implementation dependencies.material

@@ -19,6 +19,10 @@ ext {
   recyclerViewVersion             = '1.1.0-beta04'
   swipeRefreshLayoutVersion       = '1.0.0'
 
+  // Network
+  retrofitVersion                 = '2.5.0'
+  retrofitLoggingVersion          = '4.1.1'
+
   // RxJava
   rxJavaVersion                   = '2.2.8'
   rxAndroidVersion                = '2.1.1'
@@ -48,7 +52,13 @@ ext {
 
       // rx
       rxJava:                     "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-      rxPermissions:              "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionsVersion}@aar"
+      rxPermissions:              "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionsVersion}@aar",
+      retrofitAdapterRxJava:      "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+
+      // network
+      retrofit:                   "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+      retrofitLogging:            "com.squareup.okhttp3:logging-interceptor:${retrofitLoggingVersion}",
+      gsonRetrofitConverter:      "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
   ]
 
   developmentDependencies = [
