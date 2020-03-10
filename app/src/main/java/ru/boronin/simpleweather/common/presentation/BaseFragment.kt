@@ -13,6 +13,8 @@ import ru.boronin.common.navigation.ScreenResult
 import ru.boronin.common.navigation.ScreenResultProvider
 import ru.boronin.common.plugins.loading.LoadingUIDelegatePlugin
 import ru.boronin.common.plugins.loading.LoadingUIDelegatePluginImpl
+import ru.boronin.common.plugins.popup.PopupUIDelegatePlugin
+import ru.boronin.common.plugins.popup.PopupUIDelegatePluginImpl
 import ru.boronin.common.plugins.toolbar.ToolbarUIDelegatePlugin
 import ru.boronin.common.plugins.toolbar.ToolbarUIDelegatePluginImpl
 import ru.boronin.core.android.view.delegate.UIDelegatePlugin
@@ -28,6 +30,7 @@ import ru.boronin.simpleweather.R
 private const val DEFAULT_LAYOUT = R.layout.base_fragment
 
 abstract class BaseFragment(
+    private val popupPlugin: PopupUIDelegatePluginImpl = PopupUIDelegatePluginImpl(),
     private val loadingPlugin: LoadingUIDelegatePluginImpl = LoadingUIDelegatePluginImpl(
         R.id.vgLoading
     ),
@@ -37,6 +40,7 @@ abstract class BaseFragment(
 ) : Fragment(),
     BackListener,
     ScreenResultProvider,
+    PopupUIDelegatePlugin by popupPlugin,
     ToolbarUIDelegatePlugin by toolbarPlugin,
     LoadingUIDelegatePlugin by loadingPlugin {
 

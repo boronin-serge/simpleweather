@@ -10,7 +10,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component
+@Component(modules = [AppModule::class])
 interface AppComponent {
 
     fun activityFactory(): ActivityComponent.Factory

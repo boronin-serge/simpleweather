@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  def ext = rootProject.extensions.getByName("ext")
+
+  compileSdkVersion ext.androidCompileSdkVersion
+  defaultConfig { minSdkVersion ext.androidMinSdkVersion }
+}
+
+dependencies {
+  def dependencies = rootProject.ext.dependencies
+  def developmentDependencies = rootProject.ext.developmentDependencies
+
+  // Common modules
+  implementation project(':common-utils')
+
+  // Network
+  implementation dependencies.retrofit
+  implementation dependencies.retrofitLogging
+  implementation dependencies.retrofitAdapterRxJava
+  implementation dependencies.gsonRetrofitConverter
+
+  // Stetho
+  implementation developmentDependencies.stetho
+  implementation developmentDependencies.stethoInterceptor
+
+  // develop
+  implementation developmentDependencies.kotlinStdlibJdk7
+}

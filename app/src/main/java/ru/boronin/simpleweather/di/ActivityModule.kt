@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentActivity
 import dagger.Module
 import dagger.Provides
 import ru.boronin.common.navigation.AppNavigatorHandlerImpl
+import ru.boronin.core.api.location.LocationProvider
+import ru.boronin.core.api.location.impl.FusedLocationProvider
 import ru.boronin.core.api.navigator.NavigatorHandler
 import ru.boronin.simpleweather.features.main.navigator.MainNavigator
 import ru.boronin.simpleweather.features.main.navigator.MainNavigatorImpl
@@ -27,5 +29,10 @@ class ActivityModule {
         return MainNavigatorImpl().apply {
             globalHandler = navigatorHandler
         }
+    }
+
+    @Provides
+    fun provideFusedLocationProvider(activity: FragmentActivity): LocationProvider {
+        return FusedLocationProvider(activity)
     }
 }

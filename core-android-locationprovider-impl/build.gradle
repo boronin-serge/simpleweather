@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    def ext = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion ext.androidCompileSdkVersion
+    defaultConfig { minSdkVersion ext.androidMinSdkVersion }
+}
+
+dependencies {
+    def developmentDependencies = rootProject.ext.developmentDependencies
+    def dependencies = rootProject.ext.dependencies
+
+    // Core modules
+    implementation project(':core-api')
+
+    // Play services
+    implementation dependencies.playServicesLocation
+
+    // Development
+    implementation developmentDependencies.kotlinStdlibJdk7
+}

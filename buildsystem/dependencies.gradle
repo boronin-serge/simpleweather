@@ -34,6 +34,10 @@ ext {
   coreKtxVersion                  = '1.0.2'
   daggerVersion                   = '2.25.3'
   materialVersion                 = '1.1.0-alpha07'
+  stethoVersion                   = '1.5.1'
+
+  // Play services
+  locationServiceVersion          = '17.0.0'
 
   // Test
   junitVersion                    = "4.12"
@@ -52,13 +56,17 @@ ext {
 
       // rx
       rxJava:                     "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+      rxAndroid:                  "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
       rxPermissions:              "com.tbruyelle.rxpermissions2:rxpermissions:${rxPermissionsVersion}@aar",
       retrofitAdapterRxJava:      "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
 
       // network
       retrofit:                   "com.squareup.retrofit2:retrofit:${retrofitVersion}",
       retrofitLogging:            "com.squareup.okhttp3:logging-interceptor:${retrofitLoggingVersion}",
-      gsonRetrofitConverter:      "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+      gsonRetrofitConverter:      "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+
+      // location
+      playServicesLocation:       "com.google.android.gms:play-services-location:${locationServiceVersion}"
   ]
 
   developmentDependencies = [
@@ -68,7 +76,11 @@ ext {
 
       // dagger
       dagger:                     "com.google.dagger:dagger:${daggerVersion}",
-      daggerCompiler:             "com.google.dagger:dagger-compiler:${daggerVersion}"
+      daggerCompiler:             "com.google.dagger:dagger-compiler:${daggerVersion}",
+
+      // stetho
+      stetho:                     "com.facebook.stetho:stetho:${stethoVersion}",
+      stethoInterceptor:          "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
   ]
 
   testDependencies = [

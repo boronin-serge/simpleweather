@@ -43,8 +43,8 @@ abstract class BasePresenter<V : MvpView> : MvpPresenter<V> {
     }
 
     // endregion
-}
 
-infix fun CompositeDisposable.add(disposable: Disposable) {
-    add(disposable)
+    infix fun CompositeDisposable.add(disposable: Disposable) {
+        add(disposable)
+    }
 }

@@ -36,21 +36,28 @@ dependencies {
     // Core modules
     implementation project(':core-api')
     implementation project(':core-android')
+    implementation project(':core-android-locationprovider-impl')
     implementation project(':common-utils')
+    implementation project(':common-rx-utils')
+    implementation project(':core-rx-schedulers-impl')
     implementation project(':common-plugins')
     implementation project(':common-navigation')
+    implementation project(':common-network')
     implementation project(':common-extension')
 
-    // network
+    // Network
     implementation dependencies.retrofit
     implementation dependencies.retrofitLogging
     implementation dependencies.retrofitAdapterRxJava
     implementation dependencies.gsonRetrofitConverter
 
     implementation dependencies.rxJava
+    implementation dependencies.rxAndroid
     implementation dependencies.appcompat
     implementation dependencies.material
+    implementation dependencies.rxPermissions
     implementation dependencies.constraintlayout
+    implementation developmentDependencies.stetho
 
     implementation developmentDependencies.coreKtx
     implementation developmentDependencies.kotlinStdlibJdk7
