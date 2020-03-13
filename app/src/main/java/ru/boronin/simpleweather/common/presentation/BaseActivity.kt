@@ -13,9 +13,8 @@ import ru.boronin.simpleweather.di.AppComponent
 abstract class BaseActivity : AppCompatActivity(), BackPressDelegate by BackPressDelegateImpl() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         initDagger((application as App).appComponent)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onDestroy() {

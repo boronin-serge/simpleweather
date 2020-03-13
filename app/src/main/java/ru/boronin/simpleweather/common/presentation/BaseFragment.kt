@@ -53,7 +53,7 @@ abstract class BaseFragment(
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        initDagger((activity as MainActivity).activityComponent!!)
+        (activity as? MainActivity)?.activityComponent?.let { initDagger(it) }
 
         sendUIDelegatePluginEvent(UIDelegatePluginEvent.OnAttach)
     }
