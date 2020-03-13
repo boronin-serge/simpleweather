@@ -5,7 +5,9 @@ package ru.boronin.simpleweather.model.common.presentation
  */
 enum class WeatherType {
     SUNNY,
-    CLOUDY,
+    CLOUDS,
     FOGGY,
-    RAINY
+    RAIN,
+    SNOW,
+    CLEAR
 }

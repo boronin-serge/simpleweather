@@ -10,5 +10,7 @@ class NetworkSource(retrofitWrapper: RetrofitWrapper) {
 
     private val network = retrofitWrapper.create(WeatherApi::class)
 
-    fun getWeather(lat: Float, lon: Float) = network.getWeatger(lat, lon, APP_KEY)
+    fun getWeather(lat: Float, lon: Float) = network.getWeather(lat, lon, APP_KEY)
+
+    fun getDetailedWeather(lat: Float, lon: Float) = network.getDetailedWeather(lat, lon, APP_KEY)
 }

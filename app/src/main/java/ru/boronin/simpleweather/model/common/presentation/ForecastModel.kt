@@ -5,9 +5,10 @@ package ru.boronin.simpleweather.model.common.presentation
  */
 data class ForecastModel(
     val locationName: String,
-    val date: String,
+    val date: Long,
     val temperature: Int,
     val temperatureDesc: String,
+    val weatherType: WeatherType,
     val todayWeather: List<HourForecastModel>,
     val tomorrowWeather: List<HourForecastModel>,
     val nextSevenDays: List<DayForecastModel>
@@ -15,7 +16,7 @@ data class ForecastModel(
 
 data class HourForecastModel(
     val temperature: Int,
-    val time: String,
+    val time: Long,
     val weatherType: WeatherType
 )
 

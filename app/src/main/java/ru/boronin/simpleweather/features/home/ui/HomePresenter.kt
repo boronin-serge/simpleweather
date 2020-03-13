@@ -1,5 +1,6 @@
 package ru.boronin.simpleweather.features.home.ui
 
+import android.util.Log
 import com.tbruyelle.rxpermissions2.Permission
 import ru.boronin.common.rx.extension.progress
 import ru.boronin.core.api.location.LocationProvider
@@ -25,7 +26,7 @@ class HomePresenter(
                 .subscribe({
                     view?.updateView(it)
                 }, {
-
+                    Log.d("Log", "dfg")
                 })
         }
     }

@@ -49,7 +49,7 @@ class HomeFragment : BaseView<HomeView,
         val singRes = if (model.temperature < 0) R.string.home_tempWithPlus else R.string.home_tempWithMinus
         temperature.text =  getString(singRes, model.temperature)
         location.text = model.locationName
-        date.text = DateHelper.parseStringToDayMonthYear(model.date)
+        date.text = DateHelper.parseStringToDayMonthYear(model.date.toString())
         day.text = getString(R.string.home_today)
         weatherDesc.text = model.temperatureDesc
     }
