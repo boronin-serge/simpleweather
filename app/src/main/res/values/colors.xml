@@ -3,4 +3,23 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#DCDCDC</color>
     <color name="colorAccent">#1993D9</color>
+
+    <!-- region Weather -->
+
+    <color name="sunnyFirstColor">#1993D9</color>
+    <color name="sunnySecondColor">#46ACE6</color>
+
+    <color name="cloudsFirstColor">#626262</color>
+    <color name="cloudsSecondColor">#6D6D6D</color>
+
+    <color name="foggyFirstColor">#5D676B</color>
+    <color name="foggySecondColor">#7B8889</color>
+
+    <color name="rainFirstColor">#414141</color>
+    <color name="rainSecondColor">#6B6B6B</color>
+
+    <color name="snowFirstColor">#B3B3B3</color>
+    <color name="snowSecondColor">#7CBCB3</color>
+    <!-- endregion -->
+
 </resources>

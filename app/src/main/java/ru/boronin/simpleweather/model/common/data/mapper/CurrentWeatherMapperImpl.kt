@@ -12,7 +12,7 @@ class CurrentWeatherMapperImpl : CurrentWeatherMapper {
     override fun map(data: WeatherResponse): CurrentWeatherModel {
         return CurrentWeatherModel(
             data.name,
-            data.dt + data.timezone,
+            data.dt * 1000,
             data.main.temp.toInt(),
             data.weather.firstOrNull()?.description ?: DEFAULT_STRING,
             WeatherType.valueOf(data.weather.firstOrNull()?.main?.toUpperCase() ?: DEFAULT_STRING)

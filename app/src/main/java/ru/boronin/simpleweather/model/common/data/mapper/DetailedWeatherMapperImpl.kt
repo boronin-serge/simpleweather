@@ -34,7 +34,7 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
 
         return DetailedForecastModel(
             data.city.name,
-            weatherByDays[today]?.toList() ?: listOf(),
+            weatherByDays[today] ?: mutableListOf(),
             weatherByDays[tomorrow]?.toList() ?: listOf(),
             weatherByDays.values.map {
                 val averageTemp = it.sumBy { it.temperature } / it.size
@@ -51,7 +51,7 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
         weatherByDays.clear()
         weatherList.forEach {
             val calendar = Calendar.getInstance()
-            calendar.time = Date(it.time * 1000)
+            calendar.time = Date(it.time)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
             if (weatherByDays.containsKey(day)) {

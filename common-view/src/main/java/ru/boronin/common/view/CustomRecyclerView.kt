@@ -59,15 +59,20 @@ class CustomRecyclerView @JvmOverloads constructor(
 
     private fun initCustomProperties(attrs: AttributeSet) {
         context.withStyledAttributes(attrs, R.styleable.CustomRecyclerView) {
+            val commonRadius = getDimenPxProperty(R.styleable.CustomRecyclerView_crv_cornerRadius)
             val tlRadius = getDimenPxProperty(R.styleable.CustomRecyclerView_topLeftCornerRadius)
             val trRadius = getDimenPxProperty(R.styleable.CustomRecyclerView_topRightCornerRadius)
             val blRadius = getDimenPxProperty(R.styleable.CustomRecyclerView_bottomLeftCornerRadius)
             val brRadius = getDimenPxProperty(R.styleable.CustomRecyclerView_bottomRightCornerRadius)
 
-            corners = floatArrayOf(
-                tlRadius, tlRadius, trRadius, trRadius,
-                blRadius, blRadius, brRadius, brRadius
-            )
+            corners = if (commonRadius != 0f) {
+                FloatArray(8) { commonRadius }
+            } else {
+                floatArrayOf(
+                  tlRadius, tlRadius, trRadius, trRadius,
+                  blRadius, blRadius, brRadius, brRadius
+                )
+            }
         }
     }
 

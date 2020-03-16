@@ -1,8 +1,11 @@
 package ru.boronin.simpleweather.features.home.ui
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.hour_weather_item.view.*
 import ru.boronin.common.view.base.RoundedFrameLayout
 import ru.boronin.simpleweather.R
@@ -29,12 +32,23 @@ class HoursWeatherAdapter : BaseAdapter<HoursWeatherAdapter.PagerVH, HourForecas
         private val temperature = itemView.temperature
 
         fun bind(model: HourForecastModel) {
-            time.text = DateHelper.parseIsoStringToTime(model.time * 1000)
+            val ctx = itemView.context
+            time.text = DateHelper.parseIsoStringToTime(model.time)
 
-            val singRes = if (model.temperature < 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
-            temperature.text =  itemView.context.getString(singRes, model.temperature)
+            val singRes = if (model.temperature <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
+            temperature.text =  ctx.getString(singRes, model.temperature)
 
-            (itemView as RoundedFrameLayout).setBackgroundColor(Color.BLUE)
+            val firstColor = ContextCompat.getColor(ctx, model.weatherType.getFirstColor())
+            val secondColor = ContextCompat.getColor(ctx, model.weatherType.getSecondColor())
+
+            val gd = GradientDrawable(
+              GradientDrawable.Orientation.TOP_BOTTOM,
+              intArrayOf(firstColor, secondColor)
+            )
+            gd.cornerRadius = 0f
+            (itemView as RoundedFrameLayout).background = gd
+
+            logo.setImageResource(model.weatherType.getIconRes())
         }
     }
 }

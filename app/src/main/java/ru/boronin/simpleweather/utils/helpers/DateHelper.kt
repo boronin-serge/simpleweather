@@ -90,19 +90,19 @@ object DateHelper {
    */
   fun parseStringToDayMonthYearWithDotes(
     rawDate: String
-  ) = parseStringToDayMonthYear(rawDate, ".")
+  ) = parseStringToDayMonthYearWithTime(rawDate, ".")
 
   /**
    * yyyy-MM-dd -> dd/MM/yyyy
    */
-  fun parseStringToDayMonthYear(rawDate: String, delimiter: String = "/"): String {
-    return parseStringToDayMonthYear(parseIsoStringToDate(rawDate, true).time)
+  fun parseStringToDayMonthYearWithTime(rawDate: String, delimiter: String = "/"): String {
+    return parseStringToDayMonthYearWithTime(parseIsoStringToDate(rawDate, true).time)
   }
 
   /**
-   * millisecs -> dd/MM/yyyy
+   * millisecs -> dd/MM/yyyy HH:mm
    */
-  fun parseStringToDayMonthYear(rawDate: Long, delimiter: String = "/"): String {
+  fun parseStringToDayMonthYearWithTime(rawDate: Long, delimiter: String = "/"): String {
     return try {
       val date = getInstance().apply {
         time = Date(rawDate)
@@ -115,7 +115,9 @@ object DateHelper {
       val zeroDaySymbol = if (day < 10) "0" else ""
       val zeroMonthSymbol = if (month < 10) "0" else ""
 
-      "$zeroDaySymbol$day$delimiter$zeroMonthSymbol$month$delimiter$year"
+      val time = parseIsoStringToTime(rawDate)
+
+      "$zeroDaySymbol$day$delimiter$zeroMonthSymbol$month$delimiter$year $time"
     } catch (e: ParseException) {
       "Дата неизвестна"
     }

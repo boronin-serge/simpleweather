@@ -33,6 +33,7 @@
   </declare-styleable>
 
   <declare-styleable name="CustomRecyclerView">
+    <attr format="dimension" name="crv_cornerRadius"/>
     <attr format="dimension" name="topLeftCornerRadius"/>
     <attr format="dimension" name="topRightCornerRadius"/>
     <attr format="dimension" name="bottomLeftCornerRadius"/>

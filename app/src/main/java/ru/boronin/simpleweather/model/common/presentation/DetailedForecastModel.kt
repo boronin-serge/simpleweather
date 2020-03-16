@@ -5,7 +5,7 @@ package ru.boronin.simpleweather.model.common.presentation
  */
 data class DetailedForecastModel(
     val locationName: String?,
-    val todayWeather: List<HourForecastModel>,
+    val todayWeather: MutableList<HourForecastModel>,
     val tomorrowWeather: List<HourForecastModel>,
     val nextSevenDays: List<DayForecastModel>
 )
