@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+  def ext = rootProject.extensions.getByName("ext")
+
+  compileSdkVersion ext.androidCompileSdkVersion
+  defaultConfig { minSdkVersion ext.androidMinSdkVersion }
+}
+
+dependencies {
+  def dependencies = rootProject.ext.dependencies
+  def developmentDependencies = rootProject.ext.developmentDependencies
+
+  // Core modules
+  implementation project(':core-android')
+
+  // Common modules
+  implementation project(':common-extension')
+  implementation project(':common-utils')
+
+  // UI
+  implementation dependencies.appcompat
+  implementation dependencies.rxJava
+  implementation dependencies.recyclerView
+  implementation dependencies.rxPermissions
+  implementation dependencies.constraintlayout
+  implementation dependencies.viewpager2
+  implementation dependencies.swipeRefreshLayout
+
+  // develop
+  implementation developmentDependencies.kotlinStdlibJdk7
+  implementation developmentDependencies.coreKtx
+}

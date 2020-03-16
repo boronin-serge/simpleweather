@@ -4,7 +4,7 @@
     <string name="home_today">Today</string>
     <string name="home_tomorrow">Tomorrow</string>
     <string name="home_nextSevenDays">Next 7 days</string>
-    <string name="home_tempWithPlus">+%1$d</string>
-    <string name="home_tempWithMinus">-%1$d</string>
+    <string name="home_tempWithPlus">+%1$d°</string>
+    <string name="home_tempWithMinus">%1$d°</string>
 
 </resources>

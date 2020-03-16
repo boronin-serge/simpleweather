@@ -9,7 +9,9 @@ import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.annotation.AnimRes
 import androidx.annotation.ColorRes
@@ -124,9 +126,10 @@ fun View.onKeyListener(keyEvent: Int, keyCode: Int, keyFun: () -> Unit) {
   }
 }
 
-fun View.fadeOutIn(middleFun: () -> Unit) {
+fun View.fadeOutIn(duration: Int = 100, middleFun: () -> Unit) {
   val fadeOut = ObjectAnimator.ofFloat(this, "alpha", 1f, .0f)
-  fadeOut.duration = 100L
+  fadeOut.duration = duration.toLong()
+  fadeOut.interpolator = AccelerateInterpolator()
   fadeOut.addListener(object : AnimatorListenerAdapter() {
     override fun onAnimationEnd(animation: Animator) {
       super.onAnimationEnd(animation)
@@ -135,7 +138,8 @@ fun View.fadeOutIn(middleFun: () -> Unit) {
   })
 
   val fadeIn = ObjectAnimator.ofFloat(this, "alpha", .0f, 1f)
-  fadeIn.duration = 100L
+  fadeIn.duration = duration.toLong()
+  fadeIn.interpolator = AccelerateInterpolator()
 
   val mAnimationSet = AnimatorSet()
   mAnimationSet.play(fadeIn).after(fadeOut)

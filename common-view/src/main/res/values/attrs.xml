@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="ActionPanelView">
+    <attr format="dimension" name="apv_textSize" />
+    <attr format="color" name="apv_textColor" />
+    <attr format="color" name="apv_disableTextColor" />
+    <attr format="reference" name="apv_textFont" />
+
+    <attr format="dimension" name="apv_negativeTextSize" />
+    <attr format="color" name="apv_negativeTextColor" />
+    <attr format="color" name="apv_negativeDisableTextColor" />
+    <attr format="string" name="apv_negativeText" />
+    <attr format="reference" name="apv_negativeTextFont" />
+    <attr format="boolean" name="apv_negativeTextVisible" />
+    <attr format="boolean" name="apv_negativeTextEnable" />
+
+    <attr format="dimension" name="apv_positiveTextSize" />
+    <attr format="color" name="apv_positiveTextColor" />
+    <attr format="color" name="apv_positiveDisableTextColor" />
+    <attr format="string" name="apv_positiveText" />
+    <attr format="reference" name="apv_positiveTextFont" />
+    <attr format="boolean" name="apv_positiveTextVisible" />
+    <attr format="boolean" name="apv_positiveTextEnable" />
+  </declare-styleable>
+
+  <declare-styleable name="RoundedFrameLayout">
+    <attr format="color" name="rfl_backgroundColor"/>
+    <attr format="dimension" name="cornerRadius"/>
+    <attr format="dimension" name="topLeftRadius"/>
+    <attr format="dimension" name="topRightRadius"/>
+    <attr format="dimension" name="bottomLeftRadius"/>
+    <attr format="dimension" name="bottomRightRadius"/>
+  </declare-styleable>
+
+  <declare-styleable name="CustomRecyclerView">
+    <attr format="dimension" name="topLeftCornerRadius"/>
+    <attr format="dimension" name="topRightCornerRadius"/>
+    <attr format="dimension" name="bottomLeftCornerRadius"/>
+    <attr format="dimension" name="bottomRightCornerRadius"/>
+  </declare-styleable>
+
+  <declare-styleable name="CustomViewPager">
+    <attr format="boolean" name="paging"/>
+  </declare-styleable>
+
+  <declare-styleable name="BgColorTextView">
+    <attr format="color" name="bgc_backgroundLineColor" />
+  </declare-styleable>
+
+  <declare-styleable name="TextCompoundButton">
+    <attr format="enum" name="tcb_compoundButton">
+      <enum name="tcb_checkbox" value="0" />
+      <enum name="tcb_radiobutton" value="1" />
+      <enum name="tcb_switch" value="2" />
+    </attr>
+
+    <attr format="color" name="tcb_textColor" />
+    <attr format="dimension" name="tcb_textSize" />
+    <attr format="reference" name="tcb_textFont" />
+    <attr format="string" name="tcb_text" />
+    <attr format="color" name="tcb_checkBoxTint" />
+
+    <attr format="dimension" name="tcb_textPaddingStart" />
+    <attr format="dimension" name="tcb_textPaddingTop" />
+    <attr format="dimension" name="tcb_textPaddingEnd" />
+    <attr format="dimension" name="tcb_textPaddingBottom" />
+  </declare-styleable>
+
+  <declare-styleable name="XfermodeView">
+    <attr name="widthTransparent" format="dimension" />
+    <attr name="heightTransparent" format="dimension" />
+
+    <attr name="typeSize" format="enum">
+      <enum name="fit" value="0" />
+      <enum name="custom" value="1" />
+    </attr>
+
+    <attr name="marginStart" format="dimension" />
+    <attr name="marginTop" format="dimension" />
+    <attr name="marginEnd" format="dimension" />
+    <attr name="marginBottom" format="dimension" />
+  </declare-styleable>
+
+  <declare-styleable name="CameraView">
+    <attr name="camera" format="enum">
+      <enum name="back" value="0" />
+      <enum name="front" value="1" />
+    </attr>
+  </declare-styleable>
+
+
+  <declare-styleable name="UnitTextView">
+    <attr format="string" name="utv_valueText"/>
+    <attr format="string" name="utv_unitText"/>
+  </declare-styleable>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="actionPanelView_textStyle">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textColor">@color/action_text_color</item>
+    <item name="android:letterSpacing">0.04</item>
+    <item name="android:padding">10dp</item>
+    <item name="android:background">?selectableItemBackground</item>
+    <item name="android:gravity">center</item>
+  </style>
+
+  <style name="valueTextStyle">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:fontFamily">@font/roboto_bold</item>
+    <item name="android:textSize">24sp</item>
+    <item name="android:textColor">@android:color/white</item>
+  </style>
+
+  <style name="unitTextStyle" parent="valueTextStyle" >
+    <item name="android:textSize">14sp</item>
+    <item name="android:fontFamily">@font/roboto_regular</item>
+  </style>
+</resources>

@@ -96,9 +96,16 @@ object DateHelper {
    * yyyy-MM-dd -> dd/MM/yyyy
    */
   fun parseStringToDayMonthYear(rawDate: String, delimiter: String = "/"): String {
+    return parseStringToDayMonthYear(parseIsoStringToDate(rawDate, true).time)
+  }
+
+  /**
+   * millisecs -> dd/MM/yyyy
+   */
+  fun parseStringToDayMonthYear(rawDate: Long, delimiter: String = "/"): String {
     return try {
       val date = getInstance().apply {
-        time = parseIsoStringToDate(rawDate, true)
+        time = Date(rawDate)
       }
 
       val day = date.get(DAY_OF_MONTH)
@@ -118,9 +125,17 @@ object DateHelper {
    * yyyy-MM-dd'T'HH:mm:ss -> HH:mm
    */
   fun parseIsoStringToTime(rawDate: String?): String {
+    return parseIsoStringToTime(parseIsoStringToDate(rawDate, false).time)
+  }
+
+
+  /**
+   * millisecs -> HH:mm
+   */
+  fun parseIsoStringToTime(rawDate: Long): String {
     return try {
       val date = getInstance().apply {
-        time = parseIsoStringToDate(rawDate, true)
+        time = Date(rawDate)
       }
 
       val hours = date.get(HOUR_OF_DAY)

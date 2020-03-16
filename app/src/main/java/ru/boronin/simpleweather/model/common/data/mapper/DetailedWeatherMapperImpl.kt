@@ -1,8 +1,6 @@
 package ru.boronin.simpleweather.model.common.data.mapper
 
-import android.util.LongSparseArray
 import ru.boronin.simpleweather.model.common.data.DetailedWeatherResponse
-import ru.boronin.simpleweather.model.common.presentation.CurrentWeatherModel
 import ru.boronin.simpleweather.model.common.presentation.DayForecastModel
 import ru.boronin.simpleweather.model.common.presentation.DetailedForecastModel
 import ru.boronin.simpleweather.model.common.presentation.HourForecastModel

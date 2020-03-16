@@ -8,6 +8,7 @@ import ru.boronin.simpleweather.common.presentation.location.ILocationPresenter
 import ru.boronin.simpleweather.common.presentation.mvp.BasePresenter
 import ru.boronin.simpleweather.domain.interactor.WeatherInteractor
 import ru.boronin.simpleweather.features.home.navigator.HomeNavigator
+import ru.boronin.simpleweather.model.common.presentation.ForecastModel
 
 class HomePresenter(
     private val navigator: HomeNavigator,
@@ -15,8 +16,12 @@ class HomePresenter(
     private val locationProvider: LocationProvider
 ) : BasePresenter<HomeView>(), HomeAction, ILocationPresenter {
 
+    private var lastWeather: ForecastModel? = null
+    private var currentWeatherMode: HomeFragment.WeatherMode = HomeFragment.WeatherMode.TODAY
+
     override fun onFirstViewAttach() {
         onLocationNeeded()
+        view?.setWeatherMode(currentWeatherMode)
     }
 
     override fun checkWeatherAction() {
@@ -24,11 +29,32 @@ class HomePresenter(
             subscriptions add interactor.getWeather(latLng.lat, latLng.lng)
                 .progress { view?.setVisibleLoading(it) }
                 .subscribe({
+                    lastWeather = it
                     view?.updateView(it)
+                    when(currentWeatherMode) {
+                        HomeFragment.WeatherMode.TODAY -> showTodayWeatherAction()
+                        HomeFragment.WeatherMode.TOMORROW -> showTomorrowWeatherAction()
+                    }
                 }, {
                     Log.d("Log", "dfg")
                 })
         }
+    }
+
+    override fun showTodayWeatherAction() {
+        lastWeather?.todayWeather?.let { view?.updateList(it) }
+        currentWeatherMode = HomeFragment.WeatherMode.TODAY
+        view?.setWeatherMode(currentWeatherMode)
+    }
+
+    override fun showTomorrowWeatherAction() {
+        lastWeather?.tomorrowWeather?.let { view?.updateList(it) }
+        currentWeatherMode = HomeFragment.WeatherMode.TOMORROW
+        view?.setWeatherMode(currentWeatherMode)
+    }
+
+    override fun showNextFiveDaysWeatherAction() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     // region ILocationPresenter
@@ -51,4 +77,6 @@ class HomePresenter(
     }
 
     // endregion
+
+
 }

@@ -43,6 +43,7 @@ dependencies {
     implementation project(':common-plugins')
     implementation project(':common-navigation')
     implementation project(':common-network')
+    implementation project(':common-view')
     implementation project(':common-extension')
 
     // Network
