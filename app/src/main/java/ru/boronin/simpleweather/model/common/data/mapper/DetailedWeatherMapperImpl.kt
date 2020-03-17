@@ -20,6 +20,7 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
             HourForecastModel(
                 weather.temperature,
                 weather.date,
+                weather.iconId,
                 weather.weatherType
             )
         }
@@ -41,6 +42,7 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
                 DayForecastModel(
                     averageTemp,
                     it.first().time.toString(),
+                    it.first().iconId,
                     it.first().weatherType
                 )
             }

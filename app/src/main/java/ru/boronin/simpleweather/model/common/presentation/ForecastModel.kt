@@ -9,6 +9,7 @@ data class ForecastModel(
     val temperature: Int,
     val temperatureDesc: String,
     val weatherType: WeatherType,
+    val iconId: String,
     val todayWeather: List<HourForecastModel>,
     val tomorrowWeather: List<HourForecastModel>,
     val nextSevenDays: List<DayForecastModel>
@@ -17,11 +18,13 @@ data class ForecastModel(
 data class HourForecastModel(
     val temperature: Int,
     val time: Long,
+    val iconId: String,
     val weatherType: WeatherType
 )
 
 data class DayForecastModel(
     val temperature: Int,
     val day: String,
+    val iconId: String,
     val weatherType: WeatherType
 )

@@ -58,6 +58,7 @@ dependencies {
     implementation dependencies.material
     implementation dependencies.rxPermissions
     implementation dependencies.constraintlayout
+    implementation dependencies.glide
     implementation developmentDependencies.stetho
 
     implementation developmentDependencies.coreKtx

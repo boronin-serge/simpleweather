@@ -21,8 +21,9 @@
 
   <ImageView
     android:id="@+id/logo"
-    android:layout_width="30dp"
-    android:layout_height="30dp"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:scaleType="fitCenter"
     android:layout_gravity="center"
     android:src="@drawable/ic_wb_sunny_black_24dp" />
 

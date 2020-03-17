@@ -13,6 +13,7 @@ class CurrentWeatherMapperImpl : CurrentWeatherMapper {
         return CurrentWeatherModel(
             data.name,
             data.dt * 1000,
+            data.weather.firstOrNull()?.icon ?: "01d",
             data.main.temp.toInt(),
             data.weather.firstOrNull()?.description ?: DEFAULT_STRING,
             WeatherType.valueOf(data.weather.firstOrNull()?.main?.toUpperCase() ?: DEFAULT_STRING)

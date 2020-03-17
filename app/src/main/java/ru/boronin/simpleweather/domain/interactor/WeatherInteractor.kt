@@ -38,6 +38,7 @@ class WeatherInteractor(
                 HourForecastModel(
                     currentWeatherModel!!.temperature,
                     currentWeatherModel!!.date,
+                    currentWeatherModel!!.iconId,
                     currentWeatherModel!!.weatherType
                 )
             )
@@ -48,6 +49,7 @@ class WeatherInteractor(
                 currentWeatherModel!!.temperature,
                 currentWeatherModel!!.temperatureDesc,
                 currentWeatherModel!!.weatherType,
+                currentWeatherModel!!.iconId,
                 detailedWeatherModel.todayWeather.sortedBy { it.time },
                 detailedWeatherModel.tomorrowWeather,
                 detailedWeatherModel.nextSevenDays

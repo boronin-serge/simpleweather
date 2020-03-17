@@ -1,10 +1,14 @@
 package ru.boronin.simpleweather.features.home.di
 
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import dagger.Module
 import dagger.Provides
 import ru.boronin.core.api.location.LocationProvider
 import ru.boronin.core.api.navigator.NavigatorHandler
 import ru.boronin.core.api.schedulers.SchedulersProvider
+import ru.boronin.simpleweather.common.presentation.image.ImageLoader
+import ru.boronin.simpleweather.common.presentation.image.ImageLoaderImpl
 import ru.boronin.simpleweather.data.network.NetworkSource
 import ru.boronin.simpleweather.data.repository.WeatherRepositoryImpl
 import ru.boronin.simpleweather.domain.interactor.WeatherInteractor
@@ -46,8 +50,13 @@ class HomeModule {
     fun provideCurrentWeatherMapper(): CurrentWeatherMapper = CurrentWeatherMapperImpl()
 
     @Provides
-    fun DetailedWeatherMapper(currentWeatherMapper: CurrentWeatherMapper): DetailedWeatherMapper {
+    fun provideDetailedWeatherMapper(currentWeatherMapper: CurrentWeatherMapper): DetailedWeatherMapper {
         return DetailedWeatherMapperImpl(currentWeatherMapper)
+    }
+
+    @Provides
+    fun provideImageLoader(fragment: HomeFragment): ImageLoader {
+        return ImageLoaderImpl(Glide.with(fragment))
     }
 
     @Provides

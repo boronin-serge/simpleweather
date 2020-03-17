@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.home_fragment.*
 import ru.boronin.common.extension.widget.fadeOutIn
 import ru.boronin.simpleweather.R
 import ru.boronin.simpleweather.common.presentation.CorrectLeftMarginDecoration
+import ru.boronin.simpleweather.common.presentation.image.ImageLoader
 import ru.boronin.simpleweather.common.presentation.mvp.BaseView
 import ru.boronin.simpleweather.di.ActivityComponent
 import ru.boronin.simpleweather.features.home.di.HomeComponent
@@ -30,6 +31,9 @@ class HomeFragment : BaseView<HomeView,
     
     @Inject 
     override lateinit var presenter: HomePresenter
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
     
     override fun getLayout() = R.layout.home_fragment
             
@@ -82,7 +86,8 @@ class HomeFragment : BaseView<HomeView,
         gd.cornerRadius = 0f
 
         refreshLayout?.background = gd
-        logo.setImageResource(model.weatherType.getIconRes())
+
+        imageLoader.loadImage(model.iconId, logo)
     }
 
     override fun updateList(data: List<HourForecastModel>) {
@@ -117,7 +122,7 @@ class HomeFragment : BaseView<HomeView,
 
     private fun initList() {
         recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.HORIZONTAL, false)
-        recyclerView.adapter = HoursWeatherAdapter()
+        recyclerView.adapter = HoursWeatherAdapter(imageLoader)
         recyclerView.addItemDecoration(
             CorrectLeftMarginDecoration(
                 resources.getDimension(R.dimen.home_listItemPadding).toInt()
