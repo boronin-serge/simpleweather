@@ -4,6 +4,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.*
+import kotlin.math.abs
 
 /**
  * Created by Sergey Boronin on 19.04.2019.
@@ -147,6 +148,23 @@ object DateHelper {
       val zeroMinSymbol = if (minutes < 10) "0" else ""
 
       "$zeroHourSymbol$hours:$zeroMinSymbol$minutes"
+    } catch (e: ParseException) {
+      "Дата неизвестна"
+    }
+  }
+
+  /**
+  * millisecs -> Monday
+  */
+  fun parseIsoStringToDayOfWeek(rawDate: Long, weekArr: Array<String>): String {
+    return try {
+      val date = getInstance().apply {
+        time = Date(rawDate)
+      }
+
+      val day = abs(date.get(DAY_OF_WEEK) - 2) % 7
+
+      weekArr[day]
     } catch (e: ParseException) {
       "Дата неизвестна"
     }

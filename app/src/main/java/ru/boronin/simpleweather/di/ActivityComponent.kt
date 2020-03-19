@@ -6,11 +6,13 @@ import dagger.Subcomponent
 import ru.boronin.simpleweather.features.futureforecast.di.FutureForecastComponent
 import ru.boronin.simpleweather.features.home.di.HomeComponent
 import ru.boronin.simpleweather.features.main.ui.MainActivity
+import javax.inject.Singleton
 
 /**
  * Created by Sergey Boronin on 14.01.2020.
  */
 
+@ActivityScope
 @Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
 

@@ -43,32 +43,5 @@ class HomeModule {
         locationProvider: LocationProvider
     ) = HomePresenter(navigator, interactor, locationProvider)
 
-    @Provides
-    fun provideRepository(source: NetworkSource): WeatherRepository = WeatherRepositoryImpl(source)
 
-    @Provides
-    fun provideCurrentWeatherMapper(): CurrentWeatherMapper = CurrentWeatherMapperImpl()
-
-    @Provides
-    fun provideDetailedWeatherMapper(currentWeatherMapper: CurrentWeatherMapper): DetailedWeatherMapper {
-        return DetailedWeatherMapperImpl(currentWeatherMapper)
-    }
-
-    @Provides
-    fun provideImageLoader(fragment: HomeFragment): ImageLoader {
-        return ImageLoaderImpl(Glide.with(fragment))
-    }
-
-    @Provides
-    fun provideInteractor(
-        weatherRepository: WeatherRepository,
-        schedulers: SchedulersProvider,
-        currentWeatherMapper: CurrentWeatherMapper,
-        detailedWeatherMapper: DetailedWeatherMapper
-    ) = WeatherInteractor(
-        weatherRepository,
-        currentWeatherMapper,
-        detailedWeatherMapper,
-        schedulers
-    )
 }

@@ -3,6 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#DCDCDC</color>
     <color name="colorAccent">#1993D9</color>
+    <color name="darkTextColor">#151515</color>
 
     <!-- region Weather -->
 

@@ -41,7 +41,7 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
                 val averageTemp = it.sumBy { it.temperature } / it.size
                 DayForecastModel(
                     averageTemp,
-                    it.first().time.toString(),
+                    it.first().time,
                     it.first().iconId,
                     it.first().weatherType
                 )

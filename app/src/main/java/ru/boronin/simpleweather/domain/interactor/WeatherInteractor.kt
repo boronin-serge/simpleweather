@@ -20,6 +20,8 @@ class WeatherInteractor(
     private val detailedWeatherMapper: DetailedWeatherMapper,
     private val schedulersProvider: SchedulersProvider
 ) {
+    private var cachedWeather: ForecastModel? = null
+
     fun getCurrentWeather(lat: Float, lon: Float) = weatherRepository.getCurrentWeather(lat, lon).map {
         currentWeatherMapper.map(it)
     }.schedulers(schedulersProvider)
@@ -43,7 +45,7 @@ class WeatherInteractor(
                 )
             )
 
-            ForecastModel(
+            cachedWeather = ForecastModel(
                 currentWeatherModel!!.locationName ?: DEFAULT_STRING,
                 currentWeatherModel!!.date,
                 currentWeatherModel!!.temperature,
@@ -54,6 +56,9 @@ class WeatherInteractor(
                 detailedWeatherModel.tomorrowWeather,
                 detailedWeatherModel.nextSevenDays
             )
+            cachedWeather
         }
     }
+
+    fun getCachedWeather() = cachedWeather
 }

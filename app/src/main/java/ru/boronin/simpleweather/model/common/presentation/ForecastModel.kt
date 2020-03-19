@@ -24,7 +24,7 @@ data class HourForecastModel(
 
 data class DayForecastModel(
     val temperature: Int,
-    val day: String,
+    val day: Long,
     val iconId: String,
     val weatherType: WeatherType
 )
