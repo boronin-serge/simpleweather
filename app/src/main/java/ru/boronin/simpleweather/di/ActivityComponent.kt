@@ -3,6 +3,7 @@ package ru.boronin.simpleweather.di
 import androidx.fragment.app.FragmentActivity
 import dagger.BindsInstance
 import dagger.Subcomponent
+import ru.boronin.simpleweather.features.futureforecast.di.FutureForecastComponent
 import ru.boronin.simpleweather.features.home.di.HomeComponent
 import ru.boronin.simpleweather.features.main.ui.MainActivity
 
@@ -22,6 +23,7 @@ interface ActivityComponent {
     }
 
     fun homeFactory(): HomeComponent.Factory
+    fun futureForecastFactory(): FutureForecastComponent.Factory
 
     fun inject(activity: MainActivity)
 }

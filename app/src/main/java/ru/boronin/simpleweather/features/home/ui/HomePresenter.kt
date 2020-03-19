@@ -54,7 +54,7 @@ class HomePresenter(
     }
 
     override fun showNextFiveDaysWeatherAction() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        navigator.openFutureForecast()
     }
 
     // region ILocationPresenter
