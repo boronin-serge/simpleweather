@@ -4,9 +4,9 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/refreshLayout"
-  android:background="@color/colorAccent"
   android:layout_width="match_parent"
-  android:layout_height="match_parent">
+  android:layout_height="match_parent"
+  tools:background="@color/colorAccent">
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -32,11 +32,24 @@
       android:layout_height="wrap_content"
       android:textColor="@android:color/white"
       android:textSize="20sp"
+      android:layout_marginBottom="16sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/feelsLike"
+      tools:text="Sunny" />
+
+    <TextView
+      android:id="@+id/feelsLike"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@android:color/white"
+      android:textSize="16sp"
+      android:alpha="0.6"
       android:layout_marginBottom="64dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintBottom_toTopOf="@id/tomorrow"
-      tools:text="Sunny" />
+      tools:text="Feels like +5" />
 
     <LinearLayout
       android:id="@+id/tempGroup"
@@ -50,15 +63,14 @@
 
       <ImageView
         android:id="@+id/logo"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
+        android:layout_width="90dp"
+        android:layout_height="90dp"/>
 
       <TextView
         android:id="@+id/temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="12dp"
         android:textColor="@android:color/white"
         android:textSize="64sp"
         android:textStyle="bold"

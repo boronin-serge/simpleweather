@@ -50,11 +50,12 @@ class WeatherInteractor(
                 currentWeatherModel!!.date,
                 currentWeatherModel!!.temperature,
                 currentWeatherModel!!.temperatureDesc,
+                currentWeatherModel!!.feelsLike,
                 currentWeatherModel!!.weatherType,
                 currentWeatherModel!!.iconId,
                 detailedWeatherModel.todayWeather.sortedBy { it.time },
                 detailedWeatherModel.tomorrowWeather,
-                detailedWeatherModel.nextSevenDays
+                detailedWeatherModel.nextSevenDays.filterIndexed { index, dayForecastModel -> index != 0 }
             )
             cachedWeather
         }

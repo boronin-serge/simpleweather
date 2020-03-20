@@ -8,6 +8,7 @@ data class ForecastModel(
     val date: Long,
     val temperature: Int,
     val temperatureDesc: String,
+    val feelsLike: Int,
     val weatherType: WeatherType,
     val iconId: String,
     val todayWeather: List<HourForecastModel>,
@@ -23,7 +24,8 @@ data class HourForecastModel(
 )
 
 data class DayForecastModel(
-    val temperature: Int,
+    val minTemp: Int,
+    val maxTemp: Int,
     val day: Long,
     val iconId: String,
     val weatherType: WeatherType

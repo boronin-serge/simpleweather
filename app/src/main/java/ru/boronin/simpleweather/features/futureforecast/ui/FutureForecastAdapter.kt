@@ -35,10 +35,13 @@ class FutureForecastAdapter(private val imageLoader: ImageLoader) : BaseAdapter<
 
       day.text = DateHelper.parseIsoStringToDayOfWeek(model.day, daysArr)
 
-      val singRes = if (model.temperature <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
-      temperature.text =  ctx.getString(singRes, model.temperature)
+      val singMinRes = if (model.minTemp <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
+      val singMaxRes = if (model.maxTemp <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
+      val minTemp = ctx.getString(singMinRes, model.minTemp)
+      val maxTemp = ctx.getString(singMaxRes, model.maxTemp)
+      temperature.text =  ctx.getString(R.string.futureForecast_tempMinMax, minTemp, maxTemp)
 
-      imageLoader.loadImage(model.iconId, logo)
+      imageLoader.loadImage(model.iconId.replace("n", "d"), logo)
     }
   }
 }

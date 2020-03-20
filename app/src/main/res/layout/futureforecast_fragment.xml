@@ -3,8 +3,13 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:orientation="vertical"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@android:color/white">
+  android:layout_height="match_parent">
+
+  <androidx.appcompat.widget.AppCompatImageView
+    android:id="@+id/btnBack"
+    style="@style/backButtonStyle"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
     android:id="@+id/nextFiveDaysTitle"
@@ -15,8 +20,9 @@
     android:textSize="28sp"
     android:textStyle="bold"
     android:layout_marginStart="32dp"
+    android:layout_marginTop="16dp"
     android:text="@string/futureForecast_nextFiveDaysTitle"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btnBack"
     app:layout_constraintStart_toStartOf="parent" />
 
   <androidx.recyclerview.widget.RecyclerView

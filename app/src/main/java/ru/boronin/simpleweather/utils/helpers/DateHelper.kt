@@ -162,7 +162,7 @@ object DateHelper {
         time = Date(rawDate)
       }
 
-      val day = abs(date.get(DAY_OF_WEEK) - 2) % 7
+      val day = (date.get(DAY_OF_WEEK) + 5) % 7
 
       weekArr[day]
     } catch (e: ParseException) {

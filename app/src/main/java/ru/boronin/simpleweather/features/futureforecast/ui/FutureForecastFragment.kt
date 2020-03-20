@@ -3,7 +3,6 @@ package ru.boronin.simpleweather.features.futureforecast.ui
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.futureforecast_fragment.*
-import kotlinx.android.synthetic.main.home_fragment.*
 import ru.boronin.simpleweather.R
 import ru.boronin.simpleweather.common.presentation.image.ImageLoader
 import ru.boronin.simpleweather.common.presentation.mvp.BaseView
@@ -12,7 +11,8 @@ import ru.boronin.simpleweather.features.futureforecast.di.FutureForecastCompone
 import ru.boronin.simpleweather.model.common.presentation.ForecastModel
 import javax.inject.Inject
 
-class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresenter, FutureForecastComponent>(), FutureForecastView {
+class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresenter, FutureForecastComponent>(), FutureForecastView,
+  View.OnClickListener {
 
   @Inject
   override lateinit var presenter: FutureForecastPresenter
@@ -33,6 +33,12 @@ class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresen
     component?.inject(this)
   }
 
+  override fun onClick(v: View?) {
+    when(v?.id) {
+      R.id.btnBack -> presenter.backAction()
+    }
+  }
+
   override fun showForecast(data: ForecastModel) {
     (rvForecastList.adapter as FutureForecastAdapter).update(data.nextSevenDays)
   }
@@ -40,13 +46,11 @@ class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresen
   // region private
 
   private fun initToolbar() {
-    setVisibleToolbar(true)
-    setVisibleToolbarBackButton(true)
-    setVisibleToolbarShadow(false)
+    setVisibleToolbar(false)
   }
 
   private fun initListeners() {
-    setToolbarBackButtonCallback { presenter.backAction() }
+    btnBack.setOnClickListener(this)
   }
 
   private fun initList() {

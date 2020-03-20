@@ -10,8 +10,8 @@
     <color name="sunnyFirstColor">#1993D9</color>
     <color name="sunnySecondColor">#46ACE6</color>
 
-    <color name="cloudsFirstColor">#626262</color>
-    <color name="cloudsSecondColor">#6D6D6D</color>
+    <color name="cloudsFirstColor">#A9A47B</color>
+    <color name="cloudsSecondColor">#787878</color>
 
     <color name="foggyFirstColor">#5D676B</color>
     <color name="foggySecondColor">#7B8889</color>

@@ -20,14 +20,13 @@ class HomePresenter(
     private var currentWeatherMode: HomeFragment.WeatherMode = HomeFragment.WeatherMode.TODAY
 
     override fun onFirstViewAttach() {
-        onLocationNeeded()
         view?.setWeatherMode(currentWeatherMode)
     }
 
     override fun checkWeatherAction() {
         locationProvider.getLastKnownLocation { latLng ->
             subscriptions add interactor.getWeather(latLng.lat, latLng.lng)
-                .progress { view?.setVisibleLoading(it) }
+                .progress { if (it.not() || lastWeather == null) view?.setVisibleLoading(it) }
                 .subscribe({
                     lastWeather = it
                     view?.updateView(it)

@@ -8,6 +8,7 @@ data class CurrentWeatherModel(
     val date: Long,
     val iconId: String,
     val temperature: Int,
+    val feelsLike: Int,
     val temperatureDesc: String,
     val weatherType: WeatherType
 )

@@ -38,9 +38,10 @@
     android:textColor="@color/darkTextColor"
     android:textSize="20sp"
     android:textStyle="bold"
+    android:gravity="end"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
-    tools:text="+25°" />
+    tools:text="+25° / +30°" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

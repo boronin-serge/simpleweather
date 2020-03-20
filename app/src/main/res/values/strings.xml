@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">simpleweather</string>
+    <string name="app_name">Simple Weather</string>
 
+    <string name="home_now">Now</string>
     <string name="home_today">Today</string>
     <string name="home_tomorrow">Tomorrow</string>
-    <string name="home_nextSevenDays">Next 7 days</string>
+    <string name="home_nextSevenDays">Next 5 days →</string>
     <string name="home_tempWithPlus">+%1$d°</string>
     <string name="home_tempWithMinus">%1$d°</string>
+    <string name="home_tempFeelsLike">ощущается как %1$s</string>
 
-    <string name="futureForecast_nextFiveDaysTitle">Next 5 days</string>
+    <string name="futureForecast_tempMinMax">%1$s / %2$s</string>
+    <string name="futureForecast_nextFiveDaysTitle">Next 5 Days</string>
 
 </resources>

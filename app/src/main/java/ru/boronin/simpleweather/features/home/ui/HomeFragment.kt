@@ -1,5 +1,6 @@
 package ru.boronin.simpleweather.features.home.ui
 
+import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -42,6 +43,11 @@ class HomeFragment : BaseView<HomeView,
         initListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.onLocationNeeded()
+    }
+
     override fun initDagger(activityComponent: ActivityComponent) {
         component = activityComponent.homeFactory().create(this)
         component?.inject(this)
@@ -72,8 +78,12 @@ class HomeFragment : BaseView<HomeView,
         temperature.text =  getString(singRes, model.temperature)
         location.text = model.locationName
         date.text = DateHelper.parseStringToDayMonthYearWithTime(model.date)
-        day.text = getString(R.string.home_today)
+        day.text = getString(R.string.home_now)
         weatherDesc.text = model.temperatureDesc
+
+        val singFeelsLikeRes = if (model.feelsLike <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
+        val feelsLikeTemp = getString(singFeelsLikeRes, model.feelsLike)
+        feelsLike.text = getString(R.string.home_tempFeelsLike, feelsLikeTemp)
 
         val firstColor = ContextCompat.getColor(requireContext(), model.weatherType.getFirstColor())
         val secondColor = ContextCompat.getColor(requireContext(), model.weatherType.getSecondColor())
@@ -91,6 +101,7 @@ class HomeFragment : BaseView<HomeView,
 
     override fun updateList(data: List<HourForecastModel>) {
         recyclerView.fadeOutIn(200) {
+            recyclerView.scrollToPosition(0)
             (recyclerView.adapter as HoursWeatherAdapter).update(data)
             groupDetailedWeather.isVisible = true
         }

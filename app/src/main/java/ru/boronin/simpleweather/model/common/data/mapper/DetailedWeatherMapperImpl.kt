@@ -1,9 +1,11 @@
 package ru.boronin.simpleweather.model.common.data.mapper
 
+import ru.boronin.common.utils.DEFAULT_INT
 import ru.boronin.simpleweather.model.common.data.DetailedWeatherResponse
 import ru.boronin.simpleweather.model.common.presentation.DayForecastModel
 import ru.boronin.simpleweather.model.common.presentation.DetailedForecastModel
 import ru.boronin.simpleweather.model.common.presentation.HourForecastModel
+import ru.boronin.simpleweather.model.common.presentation.WeatherType
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -38,15 +40,35 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
             weatherByDays[today] ?: mutableListOf(),
             weatherByDays[tomorrow]?.toList() ?: listOf(),
             weatherByDays.values.map {
-                val averageTemp = it.sumBy { it.temperature } / it.size
+                val weather = countWeatherType(it).maxBy { it.value }!!.key
+                val icon = countIconType(it).maxBy { it.value }!!.key
                 DayForecastModel(
-                    averageTemp,
+                    it.minBy { forecastModel -> forecastModel.temperature }?.temperature ?: DEFAULT_INT,
+                    it.maxBy { forecastModel -> forecastModel.temperature }?.temperature ?: DEFAULT_INT,
                     it.first().time,
-                    it.first().iconId,
-                    it.first().weatherType
+                    icon,
+                    weather
                 )
             }
         )
+    }
+
+    private fun countWeatherType(forecastList: List<HourForecastModel>): HashMap<WeatherType, Int> {
+        val weatherTypeMap = hashMapOf<WeatherType, Int>()
+        forecastList.forEach { model ->
+            val count = weatherTypeMap[model.weatherType] ?: DEFAULT_INT
+            weatherTypeMap[model.weatherType] = count + 1
+        }
+        return weatherTypeMap
+    }
+
+    private fun countIconType(forecastList: List<HourForecastModel>): HashMap<String, Int> {
+        val iconTypeMap = hashMapOf<String, Int>()
+        forecastList.forEach { model ->
+            val count = iconTypeMap[model.iconId] ?: DEFAULT_INT
+            iconTypeMap[model.iconId] = count + 1
+        }
+        return iconTypeMap
     }
 
     private fun filterByDays(weatherList: List<HourForecastModel>) {

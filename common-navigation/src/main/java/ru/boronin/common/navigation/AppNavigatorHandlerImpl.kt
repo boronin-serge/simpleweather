@@ -4,7 +4,6 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import ru.boronin.core.api.navigator.NavigatorHandler
-import kotlin.math.max
 
 /**
  * Created by Sergey Boronin on 26.12.2019.
@@ -14,8 +13,7 @@ class AppNavigatorHandlerImpl(
     private val containerId: Int
 ) : NavigatorHandler {
 
-
-    private val inAnimator = android.R.animator.fade_in
+    private val inAnimator = R.animator.fade_in_short
     private val outAnimator = android.R.animator.fade_out
 
     override fun open(deepLink: String) {
