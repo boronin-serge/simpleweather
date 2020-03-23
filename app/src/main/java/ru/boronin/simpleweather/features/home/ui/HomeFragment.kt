@@ -1,6 +1,6 @@
 package ru.boronin.simpleweather.features.home.ui
 
-import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.home_fragment.*
+import ru.boronin.common.extension.core.getStringArray
 import ru.boronin.common.extension.widget.fadeOutIn
 import ru.boronin.simpleweather.R
 import ru.boronin.simpleweather.common.presentation.CorrectLeftMarginDecoration
@@ -57,7 +58,7 @@ class HomeFragment : BaseView<HomeView,
         when(v?.id) {
             R.id.today -> presenter.showTodayWeatherAction()
             R.id.tomorrow -> presenter.showTomorrowWeatherAction()
-            R.id.nextSevenDays -> presenter.showNextFiveDaysWeatherAction()
+            R.id.nextFiveDays -> presenter.showNextFiveDaysWeatherAction()
         }
     }
 
@@ -75,9 +76,10 @@ class HomeFragment : BaseView<HomeView,
 
     override fun updateView(model: ForecastModel) {
         val singRes = if (model.temperature <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
+        val monthsArr = requireContext().getStringArray(R.array.months)
         temperature.text =  getString(singRes, model.temperature)
         location.text = model.locationName
-        date.text = DateHelper.parseStringToDayMonthYearWithTime(model.date)
+        date.text = DateHelper.parseStringToDayMonthYearHourMin(model.date, monthsArr)
         day.text = getString(R.string.home_now)
         weatherDesc.text = model.temperatureDesc
 
@@ -85,8 +87,14 @@ class HomeFragment : BaseView<HomeView,
         val feelsLikeTemp = getString(singFeelsLikeRes, model.feelsLike)
         feelsLike.text = getString(R.string.home_tempFeelsLike, feelsLikeTemp)
 
+        val secondHexColor = if (model.iconId.last() == 'n') {
+            R.color.nightColor
+        } else {
+            model.weatherType.getSecondColor()
+        }
+
         val firstColor = ContextCompat.getColor(requireContext(), model.weatherType.getFirstColor())
-        val secondColor = ContextCompat.getColor(requireContext(), model.weatherType.getSecondColor())
+        val secondColor = ContextCompat.getColor(requireContext(), secondHexColor)
 
         val gd = GradientDrawable(
           GradientDrawable.Orientation.TOP_BOTTOM,
@@ -110,7 +118,7 @@ class HomeFragment : BaseView<HomeView,
     override fun setWeatherMode(weatherMode: WeatherMode) {
         today.alpha = 0.5f
         tomorrow.alpha = 0.5f
-        nextSevenDays.alpha = 0.5f
+        nextFiveDays.alpha = 0.5f
         when(weatherMode) {
             WeatherMode.TODAY -> today.alpha = 1f
             WeatherMode.TOMORROW -> tomorrow.alpha = 1f
@@ -127,7 +135,7 @@ class HomeFragment : BaseView<HomeView,
         refreshLayout.setOnRefreshListener(this)
         today.setOnClickListener(this)
         tomorrow.setOnClickListener(this)
-        nextSevenDays.setOnClickListener(this)
+        nextFiveDays.setOnClickListener(this)
     }
 
     private fun initList() {

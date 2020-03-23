@@ -40,7 +40,7 @@ class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresen
   }
 
   override fun showForecast(data: ForecastModel) {
-    (rvForecastList.adapter as FutureForecastAdapter).update(data.nextSevenDays)
+    (rvForecastList.adapter as FutureForecastAdapter).update(data.nextFiveDays)
   }
 
   // region private

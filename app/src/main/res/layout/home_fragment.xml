@@ -113,8 +113,8 @@
       app:layout_constraintStart_toEndOf="@+id/today" />
 
     <TextView
-      android:id="@+id/nextSevenDays"
-      android:text="@string/home_nextSevenDays"
+      android:id="@+id/nextFiveDays"
+      android:text="@string/home_nextFiveDays"
       style="@style/dayTypeStyle"
       app:layout_constraintBottom_toTopOf="@+id/recyclerView"
       app:layout_constraintStart_toEndOf="@+id/tomorrow" />
@@ -140,7 +140,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:visibility="invisible"
-      app:constraint_referenced_ids="recyclerView,today,tomorrow,nextSevenDays"/>
+      app:constraint_referenced_ids="recyclerView,today,tomorrow,nextFiveDays" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

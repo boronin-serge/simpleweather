@@ -7,13 +7,15 @@
 
     <!-- region Weather -->
 
+    <color name="nightColor">#222F48</color>
+
     <color name="errorFirstColor">#D91919</color>
     <color name="errorSecondColor">#E64646</color>
 
-    <color name="sunnyFirstColor">#1993D9</color>
-    <color name="sunnySecondColor">#46ACE6</color>
+    <color name="sunnyFirstColor">#44A3DA</color>
+    <color name="sunnySecondColor">#56A9D8</color>
 
-    <color name="cloudsFirstColor">#A9A47B</color>
+    <color name="cloudsFirstColor">#ACA98A</color>
     <color name="cloudsSecondColor">#787878</color>
 
     <color name="foggyFirstColor">#5D676B</color>
@@ -23,7 +25,7 @@
     <color name="rainSecondColor">#6B6B6B</color>
 
     <color name="snowFirstColor">#B3B3B3</color>
-    <color name="snowSecondColor">#7CBCB3</color>
+    <color name="snowSecondColor">#89B9B2</color>
 
     <color name="thunderstormFirstColor">#4F4B42</color>
     <color name="thunderstormSecondColor">#787369</color>

@@ -13,7 +13,7 @@ data class ForecastModel(
     val iconId: String,
     val todayWeather: List<HourForecastModel>,
     val tomorrowWeather: List<HourForecastModel>,
-    val nextSevenDays: List<DayForecastModel>
+    val nextFiveDays: List<DayForecastModel>
 )
 
 data class HourForecastModel(

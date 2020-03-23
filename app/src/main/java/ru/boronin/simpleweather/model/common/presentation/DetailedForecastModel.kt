@@ -7,5 +7,5 @@ data class DetailedForecastModel(
     val locationName: String?,
     val todayWeather: MutableList<HourForecastModel>,
     val tomorrowWeather: List<HourForecastModel>,
-    val nextSevenDays: List<DayForecastModel>
+    val nextFiveDays: List<DayForecastModel>
 )

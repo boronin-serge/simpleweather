@@ -55,7 +55,9 @@ class WeatherInteractor(
                 currentWeatherModel!!.iconId,
                 detailedWeatherModel.todayWeather.sortedBy { it.time },
                 detailedWeatherModel.tomorrowWeather,
-                detailedWeatherModel.nextSevenDays.filterIndexed { index, dayForecastModel -> index != 0 }
+                detailedWeatherModel.nextFiveDays.filterIndexed { index, _ ->
+                    index != 0 && detailedWeatherModel.nextFiveDays.size > 5
+                }
             )
             cachedWeather
         }

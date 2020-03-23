@@ -63,14 +63,14 @@ object DateHelper {
   /**
    * yyyy-MM-dd -> dd month year, hh:mm
    */
-  fun parseStringToDayMonthYearHourMin(rawDate: String, monthArr: Array<String>): String {
+  fun parseStringToDayMonthYearHourMin(rawDate: Long, monthArr: Array<String>): String {
     return try {
       val date = getInstance().apply {
-        time = parseIsoStringToDate(rawDate, true)
+        time = Date(rawDate)
       }
 
       val day = date.get(DAY_OF_MONTH)
-      val month = monthArr[date.get(MONTH) - 1].substring(0,3)
+      val month = monthArr[date.get(MONTH)].substring(0,3)
       val year = date.get(YEAR)
       val hour = date.get(HOUR_OF_DAY)
       val min = date.get(MINUTE)

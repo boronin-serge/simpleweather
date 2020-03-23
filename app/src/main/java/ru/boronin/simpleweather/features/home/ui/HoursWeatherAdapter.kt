@@ -38,8 +38,14 @@ class HoursWeatherAdapter(private val imageLoader: ImageLoader) : BaseAdapter<Ho
             val singRes = if (model.temperature <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
             temperature.text =  ctx.getString(singRes, model.temperature)
 
+            val secondHexColor = if (model.iconId.last() == 'n') {
+                R.color.nightColor
+            } else {
+                model.weatherType.getSecondColor()
+            }
+
             val firstColor = ContextCompat.getColor(ctx, model.weatherType.getFirstColor())
-            val secondColor = ContextCompat.getColor(ctx, model.weatherType.getSecondColor())
+            val secondColor = ContextCompat.getColor(ctx, secondHexColor)
 
             val gd = GradientDrawable(
               GradientDrawable.Orientation.TOP_BOTTOM,
