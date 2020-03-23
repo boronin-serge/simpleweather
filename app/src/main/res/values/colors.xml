@@ -7,6 +7,9 @@
 
     <!-- region Weather -->
 
+    <color name="errorFirstColor">#D91919</color>
+    <color name="errorSecondColor">#E64646</color>
+
     <color name="sunnyFirstColor">#1993D9</color>
     <color name="sunnySecondColor">#46ACE6</color>
 
@@ -21,6 +24,13 @@
 
     <color name="snowFirstColor">#B3B3B3</color>
     <color name="snowSecondColor">#7CBCB3</color>
+
+    <color name="thunderstormFirstColor">#4F4B42</color>
+    <color name="thunderstormSecondColor">#787369</color>
+
+    <color name="drizzleFirstColor">#32373F</color>
+    <color name="drizzleSecondColor">#6B7580</color>
+
     <!-- endregion -->
 
 </resources>

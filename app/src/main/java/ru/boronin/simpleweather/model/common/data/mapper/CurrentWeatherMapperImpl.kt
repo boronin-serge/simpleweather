@@ -17,7 +17,7 @@ class CurrentWeatherMapperImpl : CurrentWeatherMapper {
             data.main.temp.toInt(),
             data.main.feels_like.toInt(),
             data.weather.firstOrNull()?.description ?: DEFAULT_STRING,
-            WeatherType.valueOf(data.weather.firstOrNull()?.main?.toUpperCase() ?: DEFAULT_STRING)
+            WeatherType.find(data.weather.firstOrNull()?.main)
         )
     }
 }
