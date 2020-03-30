@@ -49,7 +49,7 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
                     icon,
                     weather
                 )
-            }
+            }.sortedBy { it.day }
         )
     }
 

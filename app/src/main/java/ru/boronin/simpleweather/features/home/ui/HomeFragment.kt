@@ -1,6 +1,5 @@
 package ru.boronin.simpleweather.features.home.ui
 
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -22,7 +21,6 @@ import ru.boronin.simpleweather.model.common.presentation.HourForecastModel
 import ru.boronin.simpleweather.utils.helpers.DateHelper
 import ru.boronin.simpleweather.utils.other.requestLocationPermission
 import javax.inject.Inject
-
 
 class HomeFragment : BaseView<HomeView,
     HomePresenter,
