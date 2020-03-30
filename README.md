@@ -7,7 +7,9 @@ Simple application for a weather forecast. It uses free forecast api of https://
 * Kotlin
 * Modules (extracted logic for common cases. As source used examples project https://github.com/boronin-serge/examples/)
 
-
+<img src="https://github.com/boronin-serge/simpleweather/blob/master/screenshots/image1.jpg" width=200 align=left>
+<img src="https://github.com/boronin-serge/simpleweather/blob/master/screenshots/image2.jpg" width=200 align=left>
+<img src="https://github.com/boronin-serge/simpleweather/blob/master/screenshots/image3.jpg" width=200 >
 
 ## Authors
 
