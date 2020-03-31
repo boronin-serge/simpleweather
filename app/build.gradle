@@ -64,6 +64,10 @@ dependencies {
     implementation developmentDependencies.coreKtx
     implementation developmentDependencies.kotlinStdlibJdk7
 
+    // room
+    implementation dependencies.room
+    annotationProcessor dependencies.roomAnnotationProcessor
+
     // Dagger
     implementation developmentDependencies.dagger
     kapt developmentDependencies.daggerCompiler
