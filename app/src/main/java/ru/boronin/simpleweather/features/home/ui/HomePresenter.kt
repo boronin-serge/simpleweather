@@ -3,6 +3,7 @@ package ru.boronin.simpleweather.features.home.ui
 import android.util.Log
 import com.tbruyelle.rxpermissions2.Permission
 import ru.boronin.common.rx.extension.progress
+import ru.boronin.common.rx.extension.schedulers
 import ru.boronin.core.api.location.LocationProvider
 import ru.boronin.simpleweather.common.presentation.location.ILocationPresenter
 import ru.boronin.simpleweather.common.presentation.mvp.BasePresenter
@@ -25,7 +26,12 @@ class HomePresenter(
 
     override fun checkWeatherAction() {
         locationProvider.getLastKnownLocation { latLng ->
-            subscriptions add interactor.getWeather(latLng.lat, latLng.lng)
+            val task = if (view?.hasConnection()!!) {
+                interactor.getWeather(latLng.lat, latLng.lng)
+            } else {
+                interactor.getCachedWeather()
+            }
+            subscriptions add task
                 .progress { if (it.not() || lastWeather == null) view?.setVisibleLoading(it) }
                 .subscribe({
                     lastWeather = it

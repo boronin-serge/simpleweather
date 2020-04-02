@@ -2,6 +2,7 @@ package ru.boronin.simpleweather.common.presentation.mvp
 
 import android.os.Bundle
 import android.view.View
+import ru.boronin.common.extension.core.isConnected
 import ru.boronin.simpleweather.common.presentation.BaseFragment
 
 /**
@@ -35,4 +36,6 @@ abstract class BaseView<V : MvpView, P : MvpPresenter<V>, C> : MvpDelegateCallba
     override fun clearDependencies() {
         component = null
     }
+
+    override fun hasConnection() = requireContext().isConnected()
 }

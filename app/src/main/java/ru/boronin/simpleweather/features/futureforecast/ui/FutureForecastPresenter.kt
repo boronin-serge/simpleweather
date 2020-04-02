@@ -11,7 +11,7 @@ class FutureForecastPresenter @Inject constructor(
 ) : BasePresenter<FutureForecastView>(), FutureForecastAction {
 
     override fun onFirstViewAttach() {
-        interactor.getCachedWeather()?.let {
+        interactor.getLastLoadedWeather()?.let {
             view?.showForecast(it)
         }
     }

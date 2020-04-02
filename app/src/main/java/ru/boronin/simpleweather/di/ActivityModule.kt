@@ -11,6 +11,7 @@ import ru.boronin.core.api.navigator.NavigatorHandler
 import ru.boronin.core.api.schedulers.SchedulersProvider
 import ru.boronin.simpleweather.common.presentation.image.ImageLoader
 import ru.boronin.simpleweather.common.presentation.image.ImageLoaderImpl
+import ru.boronin.simpleweather.data.databse.CacheSource
 import ru.boronin.simpleweather.data.network.NetworkSource
 import ru.boronin.simpleweather.data.repository.WeatherRepositoryImpl
 import ru.boronin.simpleweather.domain.interactor.WeatherInteractor
@@ -21,6 +22,8 @@ import ru.boronin.simpleweather.model.common.data.mapper.CurrentWeatherMapper
 import ru.boronin.simpleweather.model.common.data.mapper.CurrentWeatherMapperImpl
 import ru.boronin.simpleweather.model.common.data.mapper.DetailedWeatherMapper
 import ru.boronin.simpleweather.model.common.data.mapper.DetailedWeatherMapperImpl
+import ru.boronin.simpleweather.model.common.presentation.mapper.ForecastModelMapper
+import ru.boronin.simpleweather.model.common.presentation.mapper.ForecastModelMapperImpl
 
 /**
  * Created by Sergey Boronin on 14.01.2020.
@@ -49,7 +52,11 @@ class ActivityModule {
     }
 
     @Provides
-    fun provideRepository(source: NetworkSource): WeatherRepository = WeatherRepositoryImpl(source)
+    fun provideRepository(
+        networkSource: NetworkSource,
+        cacheSource: CacheSource,
+        mapper: ForecastModelMapper
+    ): WeatherRepository = WeatherRepositoryImpl(networkSource, cacheSource, mapper)
 
     @Provides
     fun provideCurrentWeatherMapper(): CurrentWeatherMapper = CurrentWeatherMapperImpl()
@@ -58,6 +65,9 @@ class ActivityModule {
     fun provideDetailedWeatherMapper(currentWeatherMapper: CurrentWeatherMapper): DetailedWeatherMapper {
         return DetailedWeatherMapperImpl(currentWeatherMapper)
     }
+
+    @Provides
+    fun provideForecastModelMapper(): ForecastModelMapper =  ForecastModelMapperImpl()
 
     @Provides
     fun provideImageLoader(activity: FragmentActivity): ImageLoader {

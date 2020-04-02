@@ -6,4 +6,5 @@ package ru.boronin.simpleweather.common.presentation.mvp
 interface MvpView {
     fun showPopup(msg: String)
     fun setVisibleLoading(visible: Boolean)
+    fun hasConnection(): Boolean
 }

@@ -1,5 +1,6 @@
 package ru.boronin.simpleweather.domain.interactor
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import ru.boronin.common.rx.extension.schedulers
 import ru.boronin.common.utils.DEFAULT_STRING
@@ -57,9 +58,25 @@ class WeatherInteractor(
                 detailedWeatherModel.tomorrowWeather,
                 detailedWeatherModel.nextFiveDays.takeLast(5)
             )
-            cachedWeather
+            cachedWeather?.also {
+                saveForecast(it)
+            }
         }
     }
 
-    fun getCachedWeather() = cachedWeather
+    fun getLastLoadedWeather() = cachedWeather
+
+    fun getCachedWeather() = weatherRepository.getCachedForecast()
+        .doOnSuccess { cachedWeather = it }
+        .schedulers(schedulersProvider)
+
+    // region private
+
+    private fun saveForecast(forecastModel: ForecastModel) {
+        Completable.fromCallable {
+            weatherRepository.saveForecast(forecastModel)
+        }.schedulers(schedulersProvider).subscribe()
+    }
+
+    // endregion
 }

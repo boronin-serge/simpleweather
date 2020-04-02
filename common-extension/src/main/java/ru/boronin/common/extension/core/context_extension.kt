@@ -1,12 +1,16 @@
 package ru.boronin.common.extension.core
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.*
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import ru.boronin.common.utils.DEFAULT_BOOLEAN
+
 
 val Context?.locale
   get() = this?.resources
@@ -51,4 +55,9 @@ fun Context.getQuantityString(
 fun Context.getDimensionPixelSize(@DimenRes resId: Int) = resources.getDimensionPixelSize(resId)
 fun Context.getInteger(@IntegerRes resId: Int) = resources.getInteger(resId)
 
+fun Context.isConnected(): Boolean {
+  val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+  val capability = connectivityManager?.getNetworkCapabilities(connectivityManager.activeNetwork)
+  return capability?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) ?: DEFAULT_BOOLEAN
+}
 // endregion
