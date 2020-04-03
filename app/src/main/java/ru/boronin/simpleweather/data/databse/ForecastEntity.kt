@@ -17,13 +17,9 @@ data class ForecastEntity(
   @ColumnInfo val feelsLike: Int,
   @ColumnInfo val weatherType: String,
   @ColumnInfo val iconId: String,
-
-  @ColumnInfo
-  val todayWeather: ArrayList<HourForecastEntity>,
-  @ColumnInfo
-  val tomorrowWeather: ArrayList<HourForecastEntity>,
-  @ColumnInfo
-  val nextFiveDays: ArrayList<DayForecastEntity>
+  @ColumnInfo val todayWeather: List<HourForecastEntity>,
+  @ColumnInfo val tomorrowWeather: List<HourForecastEntity>,
+  @ColumnInfo val nextFiveDays: List<DayForecastEntity>
 )
 
 data class HourForecastEntity(
@@ -40,40 +36,3 @@ data class DayForecastEntity(
   val iconId: String,
   val weatherType: String
 )
-
-class ModelConverters {
-  companion object {
-    var gson = Gson()
-    @TypeConverter
-    @JvmStatic
-    fun stringToSomeObjectList(data: String?): ArrayList<HourForecastEntity> {
-      if (data == null) {
-        return arrayListOf()
-      }
-      val listType: Type = object : TypeToken<ArrayList<HourForecastEntity?>?>() {}.type
-      return gson.fromJson(data, listType)
-    }
-
-    @TypeConverter
-    @JvmStatic
-    fun someObjectListToString(someObjects: ArrayList<HourForecastEntity?>?): String {
-      return gson.toJson(someObjects)
-    }
-
-    @TypeConverter
-    @JvmStatic
-    fun stringToDayObjectList(data: String?): ArrayList<DayForecastEntity> {
-      if (data == null) {
-        return arrayListOf()
-      }
-      val listType: Type = object : TypeToken<ArrayList<DayForecastEntity?>?>() {}.type
-      return gson.fromJson(data, listType)
-    }
-
-    @TypeConverter
-    @JvmStatic
-    fun someDayListToString(someObjects: ArrayList<DayForecastEntity?>?): String {
-      return gson.toJson(someObjects)
-    }
-  }
-}

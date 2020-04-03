@@ -17,9 +17,9 @@ class ForecastModelMapperImpl : ForecastModelMapper {
     data.feelsLike,
     data.weatherType.name,
     data.iconId,
-    ArrayList(data.todayWeather.map { hourModelToEntity(it) }),
-    ArrayList(data.tomorrowWeather.map { hourModelToEntity(it) }),
-    ArrayList(data.nextFiveDays.map { dayModelToEntity(it) })
+    data.todayWeather.map { hourModelToEntity(it) },
+    data.tomorrowWeather.map { hourModelToEntity(it) },
+    data.nextFiveDays.map { dayModelToEntity(it) }
   )
 
   override fun map(data: ForecastEntity) = ForecastModel(
@@ -30,9 +30,9 @@ class ForecastModelMapperImpl : ForecastModelMapper {
     data.feelsLike,
     WeatherType.find(data.weatherType),
     data.iconId,
-    ArrayList(data.todayWeather.map { hourEntityToModel(it) }),
-    ArrayList(data.tomorrowWeather.map { hourEntityToModel(it) }),
-    ArrayList(data.nextFiveDays.map { dayEntityToModel(it) })
+    data.todayWeather.map { hourEntityToModel(it) },
+    data.tomorrowWeather.map { hourEntityToModel(it) },
+    data.nextFiveDays.map { dayEntityToModel(it) }
   )
 
   // region private
@@ -68,6 +68,5 @@ class ForecastModelMapperImpl : ForecastModelMapper {
   )
 
   // endregion
-
 
 }

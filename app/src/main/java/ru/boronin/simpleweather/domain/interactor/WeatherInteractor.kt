@@ -9,6 +9,7 @@ import ru.boronin.simpleweather.domain.repository.WeatherRepository
 import ru.boronin.simpleweather.model.common.data.mapper.CurrentWeatherMapper
 import ru.boronin.simpleweather.model.common.data.mapper.DetailedWeatherMapper
 import ru.boronin.simpleweather.model.common.presentation.CurrentWeatherModel
+import ru.boronin.simpleweather.model.common.presentation.DetailedForecastModel
 import ru.boronin.simpleweather.model.common.presentation.ForecastModel
 import ru.boronin.simpleweather.model.common.presentation.HourForecastModel
 
@@ -23,45 +24,37 @@ class WeatherInteractor(
 ) {
     private var cachedWeather: ForecastModel? = null
 
-    fun getCurrentWeather(lat: Float, lon: Float) = weatherRepository.getCurrentWeather(lat, lon).map {
-        currentWeatherMapper.map(it)
-    }.schedulers(schedulersProvider)
-
-    fun getDetailedWeather(lat: Float, lon: Float) = weatherRepository.getDetailedWeather(lat, lon).map {
-        detailedWeatherMapper.map(it)
-    }.schedulers(schedulersProvider)
-
-    fun getWeather(lat: Float, lon: Float): Single<ForecastModel> {
-        var currentWeatherModel: CurrentWeatherModel? = null
+    fun getWeather(lat: Float, lon: Float): Single<ForecastModel?> {
+        var currentWeather: CurrentWeatherModel? = null
         return getCurrentWeather(lat, lon).flatMap {
-            currentWeatherModel = it
+            currentWeather = it
             getDetailedWeather(lat, lon)
-        }.map { detailedWeatherModel ->
-            detailedWeatherModel.todayWeather.add(
+        }.map { detailedWeather ->
+            detailedWeather.todayWeather.add(
                 HourForecastModel(
-                    currentWeatherModel!!.temperature,
-                    currentWeatherModel!!.date,
-                    currentWeatherModel!!.iconId,
-                    currentWeatherModel!!.weatherType
+                    currentWeather!!.temperature,
+                    currentWeather!!.date,
+                    currentWeather!!.iconId,
+                    currentWeather!!.weatherType
                 )
             )
 
             cachedWeather = ForecastModel(
-                currentWeatherModel!!.locationName ?: DEFAULT_STRING,
-                currentWeatherModel!!.date,
-                currentWeatherModel!!.temperature,
-                currentWeatherModel!!.temperatureDesc,
-                currentWeatherModel!!.feelsLike,
-                currentWeatherModel!!.weatherType,
-                currentWeatherModel!!.iconId,
-                detailedWeatherModel.todayWeather.sortedBy { it.time },
-                detailedWeatherModel.tomorrowWeather,
-                detailedWeatherModel.nextFiveDays.takeLast(5)
+                currentWeather!!.locationName ?: DEFAULT_STRING,
+                currentWeather!!.date,
+                currentWeather!!.temperature,
+                currentWeather!!.temperatureDesc,
+                currentWeather!!.feelsLike,
+                currentWeather!!.weatherType,
+                currentWeather!!.iconId,
+                detailedWeather.todayWeather.sortedBy { it.time },
+                detailedWeather.tomorrowWeather,
+                detailedWeather.nextFiveDays.takeLast(5)
             )
             cachedWeather?.also {
-                saveForecast(it)
+                saveForecast(it).subscribe()
             }
-        }
+        }.schedulers(schedulersProvider)
     }
 
     fun getLastLoadedWeather() = cachedWeather
@@ -72,10 +65,20 @@ class WeatherInteractor(
 
     // region private
 
-    private fun saveForecast(forecastModel: ForecastModel) {
-        Completable.fromCallable {
-            weatherRepository.saveForecast(forecastModel)
-        }.schedulers(schedulersProvider).subscribe()
+    private fun saveForecast(forecastModel: ForecastModel) = Completable.fromCallable {
+        weatherRepository.saveForecast(forecastModel)
+    }.schedulers(schedulersProvider)
+
+    private fun getCurrentWeather(lat: Float, lon: Float): Single<CurrentWeatherModel> {
+        return weatherRepository.getCurrentWeather(lat, lon).map {
+            currentWeatherMapper.map(it)
+        }
+    }
+
+    private fun getDetailedWeather(lat: Float, lon: Float): Single<DetailedForecastModel> {
+        return weatherRepository.getDetailedWeather(lat, lon).map {
+            detailedWeatherMapper.map(it)
+        }
     }
 
     // endregion

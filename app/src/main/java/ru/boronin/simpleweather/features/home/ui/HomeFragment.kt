@@ -73,6 +73,8 @@ class HomeFragment : BaseView<HomeView,
     }
 
     override fun updateView(model: ForecastModel) {
+        emptyPageHint.isVisible = false
+
         val singRes = if (model.temperature <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
         val monthsArr = requireContext().getStringArray(R.array.months)
         temperature.text =  getString(singRes, model.temperature)
@@ -121,6 +123,14 @@ class HomeFragment : BaseView<HomeView,
             WeatherMode.TODAY -> today.alpha = 1f
             WeatherMode.TOMORROW -> tomorrow.alpha = 1f
         }
+    }
+
+    override fun showErrorPage() {
+        emptyPageHint.isVisible = true
+    }
+
+    override fun showErrorToast() {
+        showPopup(R.string.home_loadError)
     }
 
     // region private

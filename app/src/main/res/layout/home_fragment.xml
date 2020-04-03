@@ -142,6 +142,20 @@
       android:visibility="invisible"
       app:constraint_referenced_ids="recyclerView,today,tomorrow,nextFiveDays" />
 
+    <TextView
+      android:id="@+id/emptyPageHint"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/home_emptyPageError"
+      android:gravity="center"
+      android:textSize="20sp"
+      android:textColor="@color/darkTextColor"
+      android:visibility="gone"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"/>
+
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ru.boronin.common.view.HorizontalSkipRefreshLayout>

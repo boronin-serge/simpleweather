@@ -8,6 +8,8 @@
     <string name="home_tempWithPlus">+%1$d°</string>
     <string name="home_tempWithMinus">%1$d°</string>
     <string name="home_tempFeelsLike">ощущается как %1$s</string>
+    <string name="home_loadError">Что-то пошло не так…</string>
+    <string name="home_emptyPageError">Не удалось получить прогноз погоды.\nПопробуйте позже</string>
 
     <string name="futureForecast_tempMinMax">%1$s / %2$s</string>
     <string name="futureForecast_nextFiveDaysTitle">Next 5 Days</string>

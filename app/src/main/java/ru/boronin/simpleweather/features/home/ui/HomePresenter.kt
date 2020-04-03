@@ -4,6 +4,7 @@ import android.util.Log
 import com.tbruyelle.rxpermissions2.Permission
 import ru.boronin.common.rx.extension.progress
 import ru.boronin.common.rx.extension.schedulers
+import ru.boronin.common.utils.DEFAULT_BOOLEAN
 import ru.boronin.core.api.location.LocationProvider
 import ru.boronin.simpleweather.common.presentation.location.ILocationPresenter
 import ru.boronin.simpleweather.common.presentation.mvp.BasePresenter
@@ -26,23 +27,14 @@ class HomePresenter(
 
     override fun checkWeatherAction() {
         locationProvider.getLastKnownLocation { latLng ->
-            val task = if (view?.hasConnection()!!) {
-                interactor.getWeather(latLng.lat, latLng.lng)
+            val hasConnection = view?.hasConnection() ?: DEFAULT_BOOLEAN
+
+            if (hasConnection) {
+                loadForecast(latLng.lat, latLng.lng)
             } else {
-                interactor.getCachedWeather()
+                view?.showErrorToast()
+                getCachedForecast()
             }
-            subscriptions add task
-                .progress { if (it.not() || lastWeather == null) view?.setVisibleLoading(it) }
-                .subscribe({
-                    lastWeather = it
-                    view?.updateView(it)
-                    when(currentWeatherMode) {
-                        HomeFragment.WeatherMode.TODAY -> showTodayWeatherAction()
-                        HomeFragment.WeatherMode.TOMORROW -> showTomorrowWeatherAction()
-                    }
-                }, {
-                    Log.d("Log", "dfg")
-                })
         }
     }
 
@@ -77,8 +69,43 @@ class HomePresenter(
 
     // region private
 
-    private fun checkWeather() {
+    private fun loadForecast(lat: Float, lng: Float) {
+        subscriptions add  interactor.getWeather(lat, lng)
+            .progress { showProgress(it) }
+            .subscribe({
+                if (it != null) {
+                    handleForecast(it)
+                }
+            }, {
+                view?.showErrorToast()
+                getCachedForecast()
+            })
+    }
 
+    private fun getCachedForecast() {
+        subscriptions add  interactor.getCachedWeather()
+            .progress { showProgress(it) }
+            .subscribe({
+                if (it != null) {
+                    handleForecast(it)
+                }
+            }, {
+                view?.showErrorPage()
+            })
+    }
+
+    private fun handleForecast(forecastModel: ForecastModel) {
+        lastWeather = forecastModel
+        view?.updateView(forecastModel)
+        when(currentWeatherMode) {
+            HomeFragment.WeatherMode.TODAY -> showTodayWeatherAction()
+            HomeFragment.WeatherMode.TOMORROW -> showTomorrowWeatherAction()
+        }
+    }
+
+    private fun showProgress(show: Boolean) {
+        val isActionHide = show.not()
+        if (isActionHide || lastWeather == null) view?.setVisibleLoading(show)
     }
 
     // endregion

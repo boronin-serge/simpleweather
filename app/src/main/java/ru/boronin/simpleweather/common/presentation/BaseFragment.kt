@@ -127,6 +127,7 @@ abstract class BaseFragment(
     private fun initUIDelegatePlugins() {
         addUIDelegatePlugin(loadingPlugin)
         addUIDelegatePlugin(toolbarPlugin)
+        addUIDelegatePlugin(popupPlugin)
     }
 
     private fun addUIDelegatePlugin(plugin: UIDelegatePlugin<Fragment>) {
