@@ -3,9 +3,6 @@ package ru.boronin.core.api.cache
 import android.content.SharedPreferences.Editor
 import ru.boronin.common.utils.*
 
-/**
- * Created by ivasi on 09.06.2017.
- */
 interface PreferenceManager {
   fun putBoolean(key: String, value: Boolean)
   fun getBoolean(key: String, defValue: Boolean = DEFAULT_BOOLEAN): Boolean

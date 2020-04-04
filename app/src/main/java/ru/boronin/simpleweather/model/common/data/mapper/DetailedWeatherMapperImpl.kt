@@ -39,13 +39,15 @@ class DetailedWeatherMapperImpl(private val mapper: CurrentWeatherMapper) : Deta
             data.city.name,
             weatherByDays[today] ?: mutableListOf(),
             weatherByDays[tomorrow]?.toList() ?: listOf(),
-            weatherByDays.values.map {
-                val weather = countWeatherType(it).maxBy { it.value }!!.key
-                val icon = countIconType(it).maxBy { it.value }!!.key
+            weatherByDays.values.map { listByHours ->
+                val weather = countWeatherType(listByHours).maxBy { it.value }!!.key
+                val icon = countIconType(listByHours).maxBy { it.value }!!.key
                 DayForecastModel(
-                    it.minBy { forecastModel -> forecastModel.temperature }?.temperature ?: DEFAULT_INT,
-                    it.maxBy { forecastModel -> forecastModel.temperature }?.temperature ?: DEFAULT_INT,
-                    it.first().time,
+                    listByHours.minBy { forecastModel -> forecastModel.temperature }?.temperature
+                        ?: DEFAULT_INT,
+                    listByHours.maxBy { forecastModel -> forecastModel.temperature }?.temperature
+                        ?: DEFAULT_INT,
+                    listByHours.first().time,
                     icon,
                     weather
                 )

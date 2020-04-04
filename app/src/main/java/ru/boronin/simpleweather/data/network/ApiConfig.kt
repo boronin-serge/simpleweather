@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package ru.boronin.simpleweather.data.network
 
 object ApiConfig {

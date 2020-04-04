@@ -1,9 +1,12 @@
+@file:Suppress("DEPRECATION")
+
 package ru.boronin.common.extension.text
 
 import android.os.Build
 import android.text.Html
+import android.text.Spanned
 
-fun String.fromHtml() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+fun String.fromHtml(): Spanned = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
   Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT)
 } else {
   Html.fromHtml(this)

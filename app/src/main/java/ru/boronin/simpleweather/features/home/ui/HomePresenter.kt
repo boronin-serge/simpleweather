@@ -1,9 +1,7 @@
 package ru.boronin.simpleweather.features.home.ui
 
-import android.util.Log
 import com.tbruyelle.rxpermissions2.Permission
 import ru.boronin.common.rx.extension.progress
-import ru.boronin.common.rx.extension.schedulers
 import ru.boronin.common.utils.DEFAULT_BOOLEAN
 import ru.boronin.core.api.location.LocationProvider
 import ru.boronin.simpleweather.common.presentation.location.ILocationPresenter

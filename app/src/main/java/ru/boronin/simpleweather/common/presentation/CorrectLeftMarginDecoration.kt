@@ -14,12 +14,7 @@ class CorrectLeftMarginDecoration(private val padding: Int) : RecyclerView.ItemD
     ) {
         // Скорректировать отступ вверху списка
         with(outRect) {
-            if (parent.getChildAdapterPosition(view) == 0) {
-                left = padding
-            }
-            else {
-                left = 0
-            }
+            left = if (parent.getChildAdapterPosition(view) == 0) padding else 0
             top = padding
             right = padding
             bottom = padding

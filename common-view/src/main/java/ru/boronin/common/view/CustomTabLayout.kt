@@ -128,7 +128,9 @@ class TabView @JvmOverloads  constructor(
     }
 
     fun setIcon(iconRes: Int) = ivLogo.setImageResource(iconRes)
-    fun setTitle(title: String) = tvTitle.setText(title)
+  fun setTitle(title: String) {
+    tvTitle.text = title
+  }
     fun setIconColor(color: Int) = ivLogo.setColorFilter(color)
     fun setTextColor(color: Int) = tvTitle.setTextColor(color)
     fun setTabWidth(width: Int) {

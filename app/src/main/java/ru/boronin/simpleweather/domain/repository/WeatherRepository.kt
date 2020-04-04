@@ -1,7 +1,6 @@
 package ru.boronin.simpleweather.domain.repository
 
 import io.reactivex.Single
-import ru.boronin.simpleweather.data.databse.ForecastEntity
 import ru.boronin.simpleweather.model.common.data.DetailedWeatherResponse
 import ru.boronin.simpleweather.model.common.data.WeatherResponse
 import ru.boronin.simpleweather.model.common.presentation.ForecastModel

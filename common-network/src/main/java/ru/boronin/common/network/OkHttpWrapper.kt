@@ -10,7 +10,7 @@ private const val READ_TIMEOUT = 15L
 private const val WRITE_TIMEOUT = 20L
 private const val CONNECT_TIMEOUT = 10L
 
-class OkHttpWrapper() {
+class OkHttpWrapper {
   val httpClient: OkHttpClient
 
   init {

@@ -4,7 +4,6 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.hour_weather_item.view.*
 import ru.boronin.common.view.base.RoundedFrameLayout
 import ru.boronin.simpleweather.R

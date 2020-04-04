@@ -28,7 +28,8 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toStartOf="@id/temperature"
-    android:src="@drawable/ic_wb_sunny_black_24dp" />
+    android:src="@drawable/ic_wb_sunny_black_24dp"
+    tools:ignore="ContentDescription" />
 
   <TextView
     android:id="@+id/temperature"

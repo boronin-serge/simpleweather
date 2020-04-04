@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Created by Sergey Boronin on 10.02.2020.
  */
-abstract class BaseReyclerViewAdapter<V : RecyclerView.ViewHolder, D> : RecyclerView.Adapter<V>() {
+abstract class BaseRecyclerViewAdapter<V : RecyclerView.ViewHolder, D> : RecyclerView.Adapter<V>() {
 
     protected val items: MutableList<D> = mutableListOf()
 

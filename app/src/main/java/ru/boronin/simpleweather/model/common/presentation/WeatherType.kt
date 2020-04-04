@@ -2,6 +2,7 @@ package ru.boronin.simpleweather.model.common.presentation
 
 import ru.boronin.common.utils.DEFAULT_STRING
 import ru.boronin.simpleweather.R
+import java.util.*
 
 /**
  * Created by Sergey Boronin on 06.03.2020.
@@ -88,7 +89,7 @@ enum class WeatherType {
 
     companion object {
         fun find(typeStr: String?): WeatherType {
-            val query = typeStr?.toUpperCase() ?: DEFAULT_STRING
+            val query = typeStr?.toUpperCase(Locale.ENGLISH) ?: DEFAULT_STRING
             return values().find { it.name == query } ?: ERROR
         }
     }

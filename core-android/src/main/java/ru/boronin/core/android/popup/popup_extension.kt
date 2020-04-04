@@ -10,8 +10,6 @@ import ru.boronin.core.android.popup.impl.ToastPopup
  * It will help me for easy {@link Toast} or {@link Snackbar}
  *
  * Use for {@link Snackbar} : {@link SnackBarPopup}
- *
- * Created by ivasi on 01.03.2017.
  */
 fun Context.showPopup(
   msg: CharSequence?,

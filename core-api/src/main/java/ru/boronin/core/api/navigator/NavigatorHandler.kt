@@ -30,9 +30,6 @@ interface NavigatorHandler {
 
   /**
    * Pops the passed controller from the backstack
-   *
-   * @param controller The controller that should be popped from this Router
-   * @return Whether or not this Router still has controllers remaining on it after popping.
    */
   fun pop(obj: Any?)
 

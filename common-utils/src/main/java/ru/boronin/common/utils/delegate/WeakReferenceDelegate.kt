@@ -13,11 +13,11 @@ class WeakReferenceDelegate<T> : ReadWriteProperty<Any?, T?> {
   override fun getValue(thisRef: Any?, property: KProperty<*>) = reference?.get()
 
   override fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-    if (value == null) {
+    reference = if (value == null) {
       reference?.clear()
-      reference = null
+      null
     } else {
-      reference = WeakReference(value)
+      WeakReference(value)
     }
   }
 }

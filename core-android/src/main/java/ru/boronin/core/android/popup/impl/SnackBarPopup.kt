@@ -3,12 +3,12 @@ package ru.boronin.core.android.popup.impl
 import android.app.Activity
 import android.content.Context
 import android.graphics.Point
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.IdRes
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import ru.boronin.common.extension.widget.findViewTraversal
 import ru.boronin.common.utils.getNavigationBarSize
 import ru.boronin.core.android.popup.Popup
@@ -16,8 +16,6 @@ import ru.boronin.core.android.popup.PopupDuration
 
 /**
  * Implementation [Popup] for [Snackbar]
- *
- * Created by ivasi on 01.03.2017.
  */
 private const val SNACKBAR_TEXT_MAX_LINES = 3
 

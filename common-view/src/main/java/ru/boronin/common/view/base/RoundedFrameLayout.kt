@@ -13,7 +13,7 @@ import ru.boronin.common.extension.primitive.getColorProperty
 import ru.boronin.common.extension.primitive.getDimenPxProperty
 import ru.boronin.common.view.R
 
-open class RoundedFrameLayout @JvmOverloads constructor(
+class RoundedFrameLayout @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet,
   defStyleAttr: Int = 0

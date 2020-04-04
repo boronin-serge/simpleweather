@@ -25,7 +25,8 @@
     android:layout_height="50dp"
     android:scaleType="fitCenter"
     android:layout_gravity="center"
-    android:src="@drawable/ic_wb_sunny_black_24dp" />
+    android:src="@drawable/ic_wb_sunny_black_24dp"
+    tools:ignore="ContentDescription" />
 
   <TextView
     android:id="@+id/temperature"
