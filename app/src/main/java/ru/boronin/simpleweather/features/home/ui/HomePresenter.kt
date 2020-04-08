@@ -21,6 +21,7 @@ class HomePresenter(
 
     override fun onFirstViewAttach() {
         view?.setWeatherMode(currentWeatherMode)
+        getCachedForecast()
     }
 
     override fun checkWeatherAction() {

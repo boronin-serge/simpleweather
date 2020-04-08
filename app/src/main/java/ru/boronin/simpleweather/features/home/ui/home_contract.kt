@@ -7,7 +7,7 @@ import ru.boronin.simpleweather.model.common.presentation.HourForecastModel
 interface HomeView : MvpView {
     fun checkLocationPermissions()
     fun updateView(model: ForecastModel)
-    fun updateList(data: List<HourForecastModel>)
+    fun updateList(data: List<HourForecastModel>, animate: Boolean = true)
     fun setWeatherMode(weatherMode: HomeFragment.WeatherMode)
     fun showErrorPage()
     fun showErrorToast()

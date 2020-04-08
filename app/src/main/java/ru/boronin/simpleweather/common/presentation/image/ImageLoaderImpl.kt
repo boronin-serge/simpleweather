@@ -26,11 +26,9 @@ class ImageLoaderImpl(
           Log.e(TAG, "Load failed", e)
 
           // You can also log the individual causes:
-          // You can also log the individual causes:
           for (t in e!!.rootCauses) {
             Log.e(TAG, "Caused by", t)
           }
-          // Or, to log all root causes locally, you can use the built in helper method:
           // Or, to log all root causes locally, you can use the built in helper method:
           e.logRootCauses(TAG)
 

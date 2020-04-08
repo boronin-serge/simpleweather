@@ -107,8 +107,9 @@ class HomeFragment : BaseView<HomeView,
         imageLoader.loadImage(model.iconId, logo)
     }
 
-    override fun updateList(data: List<HourForecastModel>) {
-        recyclerView.fadeOutIn(200) {
+    override fun updateList(data: List<HourForecastModel>, animate: Boolean) {
+        val duration = if (animate) 200 else 0
+        recyclerView.fadeOutIn(duration) {
             recyclerView.scrollToPosition(0)
             (recyclerView.adapter as HoursWeatherAdapter).update(data)
             groupDetailedWeather.isVisible = true

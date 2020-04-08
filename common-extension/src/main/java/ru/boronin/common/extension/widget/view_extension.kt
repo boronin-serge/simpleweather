@@ -126,6 +126,11 @@ fun View.onKeyListener(keyEvent: Int, keyCode: Int, keyFun: () -> Unit) {
 }
 
 fun View.fadeOutIn(duration: Int = 100, middleFun: () -> Unit) {
+  if (duration == 0) {
+    middleFun.invoke()
+    return
+  }
+
   val fadeOut = ObjectAnimator.ofFloat(this, "alpha", 1f, .0f)
   fadeOut.duration = duration.toLong()
   fadeOut.interpolator = AccelerateInterpolator()
