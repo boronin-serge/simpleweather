@@ -11,7 +11,6 @@ import ru.boronin.simpleweather.model.common.data.mapper.DetailedWeatherMapper
 import ru.boronin.simpleweather.model.common.presentation.CurrentWeatherModel
 import ru.boronin.simpleweather.model.common.presentation.DetailedForecastModel
 import ru.boronin.simpleweather.model.common.presentation.ForecastModel
-import ru.boronin.simpleweather.model.common.presentation.HourForecastModel
 
 /**
  * Created by Sergey Boronin on 06.03.2020.
@@ -30,15 +29,6 @@ class WeatherInteractor(
             currentWeather = it
             getDetailedWeather(lat, lon)
         }.map { detailedWeather ->
-            detailedWeather.todayWeather.add(
-                HourForecastModel(
-                    currentWeather!!.temperature,
-                    currentWeather!!.date,
-                    currentWeather!!.iconId,
-                    currentWeather!!.weatherType
-                )
-            )
-
             cachedWeather = ForecastModel(
                 currentWeather!!.locationName ?: DEFAULT_STRING,
                 currentWeather!!.date,

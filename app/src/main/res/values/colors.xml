@@ -13,25 +13,25 @@
     <color name="errorSecondColor">#E64646</color>
 
     <color name="sunnyFirstColor">#44A3DA</color>
-    <color name="sunnySecondColor">#56A9D8</color>
+    <color name="sunnySecondColor">#67B1DC</color>
 
-    <color name="cloudsFirstColor">#ACA98A</color>
-    <color name="cloudsSecondColor">#787878</color>
+    <color name="cloudsFirstColor">#BAAE96</color>
+    <color name="cloudsSecondColor">#878787</color>
 
-    <color name="foggyFirstColor">#5D676B</color>
-    <color name="foggySecondColor">#7B8889</color>
+    <color name="foggyFirstColor">#A4A4A4</color>
+    <color name="foggySecondColor">#686868</color>
 
-    <color name="rainFirstColor">#414141</color>
-    <color name="rainSecondColor">#6B6B6B</color>
+    <color name="rainFirstColor">#97A2A7</color>
+    <color name="rainSecondColor">#757C7F</color>
+
+    <color name="drizzleFirstColor">#B0B1B3</color>
+    <color name="drizzleSecondColor">#737476</color>
 
     <color name="snowFirstColor">#B3B3B3</color>
     <color name="snowSecondColor">#89B9B2</color>
 
-    <color name="thunderstormFirstColor">#4F4B42</color>
-    <color name="thunderstormSecondColor">#787369</color>
-
-    <color name="drizzleFirstColor">#32373F</color>
-    <color name="drizzleSecondColor">#6B7580</color>
+    <color name="thunderstormFirstColor">#B0B0B0</color>
+    <color name="thunderstormSecondColor">#2F2F2F</color>
 
     <!-- endregion -->
 
