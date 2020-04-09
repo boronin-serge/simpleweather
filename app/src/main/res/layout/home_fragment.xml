@@ -17,11 +17,11 @@
       android:id="@+id/day"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="16dp"
       android:textColor="@android:color/white"
-      android:textSize="28sp"
+      android:textSize="24sp"
       android:textStyle="bold"
-      app:layout_constraintBottom_toTopOf="@id/tempGroup"
+      android:layout_marginBottom="12dp"
+      app:layout_constraintBottom_toTopOf="@+id/tempGroup"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       tools:text="Now" />
@@ -31,24 +31,24 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textColor="@android:color/white"
-      android:textSize="20sp"
-      android:layout_marginBottom="16sp"
+      android:textSize="24sp"
+      android:layout_marginTop="12dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/feelsLike"
+      app:layout_constraintTop_toBottomOf="@+id/tempGroup"
       tools:text="Sunny" />
 
     <TextView
       android:id="@+id/feelsLike"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="56dp"
       android:alpha="0.6"
       android:textColor="@android:color/white"
       android:textSize="16sp"
-      app:layout_constraintBottom_toTopOf="@id/tomorrow"
+      android:layout_marginTop="12dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/weatherDesc"
       tools:text="Feels like +5" />
 
     <LinearLayout
@@ -57,9 +57,11 @@
       android:layout_height="wrap_content"
       android:orientation="horizontal"
       android:layout_marginBottom="16dp"
-      app:layout_constraintBottom_toTopOf="@id/weatherDesc"
+      app:layout_constraintBottom_toTopOf="@+id/nextFiveDays"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_chainStyle="packed"
       app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/date"
       tools:ignore="UseCompoundDrawables">
 
       <ImageView
@@ -87,9 +89,9 @@
       android:layout_marginStart="32dp"
       android:layout_marginTop="48dp"
       android:textSize="24sp"
-      tools:text="London,\nUnited Kingdom"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"/>
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="London,\nUnited Kingdom" />
 
     <TextView
       android:id="@+id/date"
@@ -101,23 +103,23 @@
 
     <TextView
       android:id="@+id/today"
-      android:text="@string/home_today"
       style="@style/dayTypeStyle"
+      android:text="@string/home_today"
       app:layout_constraintBottom_toTopOf="@+id/recyclerView"
       app:layout_constraintEnd_toStartOf="@+id/tomorrow"
       app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
       android:id="@+id/tomorrow"
-      android:text="@string/home_tomorrow"
       style="@style/dayTypeStyle"
+      android:text="@string/home_tomorrow"
       app:layout_constraintBottom_toTopOf="@+id/recyclerView"
       app:layout_constraintStart_toEndOf="@+id/today" />
 
     <TextView
       android:id="@+id/nextFiveDays"
-      android:text="@string/home_nextFiveDays"
       style="@style/dayTypeStyle"
+      android:text="@string/home_nextFiveDays"
       app:layout_constraintBottom_toTopOf="@+id/recyclerView"
       app:layout_constraintStart_toEndOf="@+id/tomorrow" />
 
@@ -148,15 +150,15 @@
       android:id="@+id/emptyPageHint"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/home_emptyPageError"
       android:gravity="center"
-      android:textSize="20sp"
+      android:text="@string/home_emptyPageError"
       android:textColor="@color/darkTextColor"
+      android:textSize="20sp"
       android:visibility="gone"
-      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"/>
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 
