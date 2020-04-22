@@ -17,7 +17,7 @@ class HomePresenter(
 ) : BasePresenter<HomeView>(), HomeAction, ILocationPresenter {
 
     private var lastWeather: ForecastModel? = null
-    private var currentWeatherMode: HomeFragment.WeatherMode = HomeFragment.WeatherMode.TODAY
+    private var currentWeatherMode  = HomeFragment.WeatherMode.TODAY
 
     override fun onFirstViewAttach() {
         view?.setWeatherMode(currentWeatherMode)
@@ -96,6 +96,15 @@ class HomePresenter(
     private fun handleForecast(forecastModel: ForecastModel) {
         lastWeather = forecastModel
         view?.updateView(forecastModel)
+        lastWeather?.todayWeather?.let {
+            if (it.isEmpty()) {
+                currentWeatherMode = HomeFragment.WeatherMode.TOMORROW
+                view?.enableToday(false)
+            } else {
+                view?.enableToday(true)
+            }
+        }
+
         when(currentWeatherMode) {
             HomeFragment.WeatherMode.TODAY -> showTodayWeatherAction()
             HomeFragment.WeatherMode.TOMORROW -> showTomorrowWeatherAction()

@@ -2,6 +2,7 @@ package ru.boronin.simpleweather.features.home.ui
 
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -132,6 +133,12 @@ class HomeFragment : BaseView<HomeView,
 
     override fun showErrorToast() {
         showPopup(R.string.home_loadError)
+    }
+
+    override fun enableToday(enable: Boolean) {
+        val lp = today.layoutParams
+        lp.width = if (enable) LinearLayout.LayoutParams.WRAP_CONTENT else 0
+        today.layoutParams = lp
     }
 
     // region private

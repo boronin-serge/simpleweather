@@ -9,6 +9,7 @@ interface HomeView : MvpView {
     fun updateView(model: ForecastModel)
     fun updateList(data: List<HourForecastModel>, animate: Boolean = true)
     fun setWeatherMode(weatherMode: HomeFragment.WeatherMode)
+    fun enableToday(enable: Boolean)
     fun showErrorPage()
     fun showErrorToast()
 }
