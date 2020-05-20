@@ -2,10 +2,11 @@
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="731.4286"
-    android:viewportHeight="731.4286">
-  <group android:translateX="109.71429"
-      android:translateY="109.71429">
+  android:viewportWidth="640"
+  android:viewportHeight="640">
+  <group
+    android:translateX="64"
+    android:translateY="64">
     <path
         android:pathData="M0,0h512v512h-512z">
       <aapt:attr name="android:fillColor">
@@ -15,8 +16,9 @@
             android:endY="512"
             android:endX="256"
             android:type="linear">
-          <item android:offset="0" android:color="#FF6BC1FF"/>
-          <item android:offset="1" android:color="#AD89DCFF"/>
+          <item android:offset="0" android:color="#FF007CD5"/>
+          <item android:offset="0.9999" android:color="#FF3DB7FF"/>
+          <item android:offset="1" android:color="#FF7BD7FF"/>
         </gradient>
       </aapt:attr>
     </path>
