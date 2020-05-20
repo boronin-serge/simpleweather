@@ -10,6 +10,7 @@
     <string name="home_tempFeelsLike">ощущается как %1$s</string>
     <string name="home_loadError">Что-то пошло не так…</string>
     <string name="home_emptyPageError">Не удалось получить прогноз погоды.\nПопробуйте позже</string>
+    <string name="home_emptyPageNotLocationError">Не удалось определить ваше местоположение.\nПопробуйте позже</string>
 
     <string name="futureForecast_tempMinMax">%1$s / %2$s</string>
     <string name="futureForecast_nextFiveDaysTitle">Прогноз на 5 дней</string>

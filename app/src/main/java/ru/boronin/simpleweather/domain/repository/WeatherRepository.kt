@@ -1,5 +1,6 @@
 package ru.boronin.simpleweather.domain.repository
 
+import io.reactivex.Maybe
 import io.reactivex.Single
 import ru.boronin.simpleweather.model.common.data.DetailedWeatherResponse
 import ru.boronin.simpleweather.model.common.data.WeatherResponse
@@ -10,7 +11,7 @@ import ru.boronin.simpleweather.model.common.presentation.ForecastModel
  */
 interface WeatherRepository {
     fun saveForecast(forecast: ForecastModel)
-    fun getCachedForecast(): Single<ForecastModel>
+    fun getCachedForecast(): Maybe<ForecastModel>
     fun getCurrentWeather(lat: Float, lon: Float): Single<WeatherResponse>
     fun getDetailedWeather(lat: Float, lon: Float): Single<DetailedWeatherResponse>
 }

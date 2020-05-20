@@ -11,6 +11,7 @@ interface HomeView : MvpView {
     fun setWeatherMode(weatherMode: HomeFragment.WeatherMode)
     fun enableToday(enable: Boolean)
     fun showErrorPage()
+    fun showNotLocationPage()
     fun showErrorToast()
 }
 

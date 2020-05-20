@@ -128,6 +128,12 @@ class HomeFragment : BaseView<HomeView,
     }
 
     override fun showErrorPage() {
+        emptyPageHint.setText(R.string.home_emptyPageError)
+        emptyPageHint.isVisible = true
+    }
+
+    override fun showNotLocationPage() {
+        emptyPageHint.setText(R.string.home_emptyPageNotLocationError)
         emptyPageHint.isVisible = true
     }
 

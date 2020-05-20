@@ -12,7 +12,7 @@ interface ForecastDao {
   fun insertForecast(forecast: ForecastEntity)
 
   @Query("SELECT * from forecast_table ORDER BY ROWID ASC LIMIT 1")
-  fun getLastForecast(): ForecastEntity
+  fun getLastForecast(): ForecastEntity?
 
   @Query("DELETE FROM forecast_table")
   fun deleteAll()

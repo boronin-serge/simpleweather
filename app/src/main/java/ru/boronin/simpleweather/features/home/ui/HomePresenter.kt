@@ -3,6 +3,7 @@ package ru.boronin.simpleweather.features.home.ui
 import com.tbruyelle.rxpermissions2.Permission
 import ru.boronin.common.rx.extension.progress
 import ru.boronin.common.utils.DEFAULT_BOOLEAN
+import ru.boronin.common.utils.DEFAULT_FLOAT
 import ru.boronin.core.api.location.LocationProvider
 import ru.boronin.simpleweather.common.presentation.location.ILocationPresenter
 import ru.boronin.simpleweather.common.presentation.mvp.BasePresenter
@@ -69,7 +70,12 @@ class HomePresenter(
     // region private
 
     private fun loadForecast(lat: Float, lng: Float) {
-        subscriptions add  interactor.getWeather(lat, lng)
+        if (lat == DEFAULT_FLOAT && lng == DEFAULT_FLOAT) {
+            getCachedForecast(hasLocation = false)
+            return
+        }
+
+        subscriptions add interactor.getWeather(lat, lng)
             .progress { showProgress(it) }
             .subscribe({
                 if (it != null) {
@@ -81,8 +87,8 @@ class HomePresenter(
             })
     }
 
-    private fun getCachedForecast() {
-        subscriptions add  interactor.getCachedWeather()
+    private fun getCachedForecast(hasLocation: Boolean = true) {
+        subscriptions add interactor.getCachedWeather()
             .progress { showProgress(it) }
             .subscribe({
                 if (it != null) {
@@ -90,6 +96,10 @@ class HomePresenter(
                 }
             }, {
                 view?.showErrorPage()
+            }, {
+                if (hasLocation.not()) {
+                    view?.showNotLocationPage()
+                }
             })
     }
 
