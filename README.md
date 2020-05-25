@@ -25,3 +25,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Example of MVP and Clean Architecture code
 * Inspiration
 * etc
+
+<a href='https://play.google.com/store/apps/details?id=ru.boronin.simpleweather&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width=200 /></a>
