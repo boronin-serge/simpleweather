@@ -37,21 +37,21 @@ class ForecastModelMapperImpl : ForecastModelMapper {
 
   // region private
 
-  private fun hourModelToEntity(model: HourForecastModel) =  HourForecastEntity(
+  private fun hourModelToEntity(model: HourForecastModel) = HourForecastEntity(
     model.temperature,
     model.time,
     model.iconId,
     model.weatherType.name
   )
 
-  private fun hourEntityToModel(entity: HourForecastEntity) =  HourForecastModel(
+  private fun hourEntityToModel(entity: HourForecastEntity) = HourForecastModel(
     entity.temperature,
     entity.time,
     entity.iconId,
     WeatherType.find(entity.weatherType)
   )
 
-  private fun dayModelToEntity(model: DayForecastModel) =  DayForecastEntity(
+  private fun dayModelToEntity(model: DayForecastModel) = DayForecastEntity(
     model.minTemp,
     model.maxTemp,
     model.day,
@@ -59,7 +59,7 @@ class ForecastModelMapperImpl : ForecastModelMapper {
     model.weatherType.name
   )
 
-  private fun dayEntityToModel(entity: DayForecastEntity) =  DayForecastModel(
+  private fun dayEntityToModel(entity: DayForecastEntity) = DayForecastModel(
     entity.minTemp,
     entity.maxTemp,
     entity.day,
@@ -68,5 +68,4 @@ class ForecastModelMapperImpl : ForecastModelMapper {
   )
 
   // endregion
-
 }

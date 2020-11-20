@@ -11,7 +11,9 @@ import ru.boronin.simpleweather.features.futureforecast.di.FutureForecastCompone
 import ru.boronin.simpleweather.model.common.presentation.ForecastModel
 import javax.inject.Inject
 
-class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresenter, FutureForecastComponent>(), FutureForecastView,
+class FutureForecastFragment :
+  BaseView<FutureForecastView, FutureForecastPresenter, FutureForecastComponent>(),
+  FutureForecastView,
   View.OnClickListener {
 
   @Inject
@@ -34,7 +36,7 @@ class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresen
   }
 
   override fun onClick(v: View?) {
-    when(v?.id) {
+    when (v?.id) {
       R.id.btnBack -> presenter.backAction()
     }
   }
@@ -59,5 +61,4 @@ class FutureForecastFragment : BaseView<FutureForecastView, FutureForecastPresen
   }
 
   // endregion
-
 }

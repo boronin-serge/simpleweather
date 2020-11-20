@@ -6,17 +6,17 @@ import ru.boronin.simpleweather.features.futureforecast.navigator.FutureForecast
 import javax.inject.Inject
 
 class FutureForecastPresenter @Inject constructor(
-    private val navigator: FutureForecastNavigator,
-    private val interactor: WeatherInteractor
+  private val navigator: FutureForecastNavigator,
+  private val interactor: WeatherInteractor
 ) : BasePresenter<FutureForecastView>(), FutureForecastAction {
 
-    override fun onFirstViewAttach() {
-        interactor.getLastLoadedWeather()?.let {
-            view?.showForecast(it)
-        }
+  override fun onFirstViewAttach() {
+    interactor.getLastLoadedWeather()?.let {
+      view?.showForecast(it)
     }
+  }
 
-    override fun backAction() {
-        navigator.back()
-    }
+  override fun backAction() {
+    navigator.back()
+  }
 }

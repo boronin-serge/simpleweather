@@ -7,5 +7,5 @@ import ru.boronin.simpleweather.model.common.presentation.CurrentWeatherModel
  * Created by Sergey Boronin on 06.03.2020.
  */
 interface CurrentWeatherMapper {
-    fun map(data: WeatherResponse): CurrentWeatherModel
+  fun map(data: WeatherResponse): CurrentWeatherModel
 }

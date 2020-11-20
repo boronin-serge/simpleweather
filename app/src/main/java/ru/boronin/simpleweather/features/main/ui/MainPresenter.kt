@@ -7,9 +7,9 @@ import javax.inject.Inject
  * Created by Sergey Boronin on 24.01.2020.
  */
 class MainPresenter @Inject constructor(
-    private val navigator: MainNavigator
+  private val navigator: MainNavigator
 ) {
-    fun init() {
-        navigator.openHome()
-    }
+  fun init() {
+    navigator.openHome()
+  }
 }

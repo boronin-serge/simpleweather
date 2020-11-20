@@ -32,59 +32,61 @@ import ru.boronin.simpleweather.model.common.presentation.mapper.ForecastModelMa
 @Module
 class ActivityModule {
 
-    @Provides
-    fun provideNavigator(activity: FragmentActivity, containerId: Int): NavigatorHandler {
-        return AppNavigatorHandlerImpl(activity.supportFragmentManager, containerId)
+  @Provides
+  fun provideNavigator(activity: FragmentActivity, containerId: Int): NavigatorHandler {
+    return AppNavigatorHandlerImpl(activity.supportFragmentManager, containerId)
+  }
+
+  @Provides
+  fun provideMainNavigator(
+    navigatorHandler: NavigatorHandler
+  ): MainNavigator {
+    return MainNavigatorImpl().apply {
+      globalHandler = navigatorHandler
     }
+  }
 
-    @Provides
-    fun provideMainNavigator(
-        navigatorHandler: NavigatorHandler
-    ): MainNavigator {
-        return MainNavigatorImpl().apply {
-            globalHandler = navigatorHandler
-        }
-    }
+  @Provides
+  fun provideFusedLocationProvider(activity: FragmentActivity): LocationProvider {
+    return FusedLocationProvider(activity)
+  }
 
-    @Provides
-    fun provideFusedLocationProvider(activity: FragmentActivity): LocationProvider {
-        return FusedLocationProvider(activity)
-    }
+  @Provides
+  fun provideRepository(
+    networkSource: NetworkSource,
+    cacheSource: CacheSource,
+    mapper: ForecastModelMapper
+  ): WeatherRepository = WeatherRepositoryImpl(networkSource, cacheSource, mapper)
 
-    @Provides
-    fun provideRepository(
-        networkSource: NetworkSource,
-        cacheSource: CacheSource,
-        mapper: ForecastModelMapper
-    ): WeatherRepository = WeatherRepositoryImpl(networkSource, cacheSource, mapper)
+  @Provides
+  fun provideCurrentWeatherMapper(): CurrentWeatherMapper = CurrentWeatherMapperImpl()
 
-    @Provides
-    fun provideCurrentWeatherMapper(): CurrentWeatherMapper = CurrentWeatherMapperImpl()
+  @Provides
+  fun provideDetailedWeatherMapper(
+    currentWeatherMapper: CurrentWeatherMapper
+  ): DetailedWeatherMapper {
+    return DetailedWeatherMapperImpl(currentWeatherMapper)
+  }
 
-    @Provides
-    fun provideDetailedWeatherMapper(currentWeatherMapper: CurrentWeatherMapper): DetailedWeatherMapper {
-        return DetailedWeatherMapperImpl(currentWeatherMapper)
-    }
+  @Provides
+  fun provideForecastModelMapper(): ForecastModelMapper = ForecastModelMapperImpl()
 
-    @Provides
-    fun provideForecastModelMapper(): ForecastModelMapper =  ForecastModelMapperImpl()
+  @Provides
+  fun provideImageLoader(activity: FragmentActivity): ImageLoader {
+    return ImageLoaderImpl(Glide.with(activity))
+  }
 
-    @Provides
-    fun provideImageLoader(activity: FragmentActivity): ImageLoader {
-        return ImageLoaderImpl(Glide.with(activity))
-    }
-
-    @ActivityScope
-    @Provides
-    fun provideInteractor(
-        weatherRepository: WeatherRepository,
-        schedulers: SchedulersProvider,
-        currentWeatherMapper: CurrentWeatherMapper,
-        detailedWeatherMapper: DetailedWeatherMapper
-    ) = WeatherInteractor(
-        weatherRepository,
-        currentWeatherMapper,
-        detailedWeatherMapper,
-        schedulers
-    )
+  @ActivityScope
+  @Provides
+  fun provideInteractor(
+    weatherRepository: WeatherRepository,
+    schedulers: SchedulersProvider,
+    currentWeatherMapper: CurrentWeatherMapper,
+    detailedWeatherMapper: DetailedWeatherMapper
+  ) = WeatherInteractor(
+    weatherRepository,
+    currentWeatherMapper,
+    detailedWeatherMapper,
+    schedulers
+  )
 }

@@ -14,7 +14,9 @@ import ru.boronin.simpleweather.utils.helpers.DateHelper
 /**
  * Created by Sergey Boronin on 16.03.2020.
  */
-class FutureForecastAdapter(private val imageLoader: ImageLoader) : BaseAdapter<FutureForecastAdapter.PagerVH, DayForecastModel>() {
+class FutureForecastAdapter(
+  private val imageLoader: ImageLoader
+) : BaseAdapter<FutureForecastAdapter.PagerVH, DayForecastModel>() {
 
   override fun getItemLayout() = R.layout.future_forecast_item
 
@@ -24,7 +26,10 @@ class FutureForecastAdapter(private val imageLoader: ImageLoader) : BaseAdapter<
     holder.bind(items[position])
   }
 
-  class PagerVH(itemView: View, private val imageLoader: ImageLoader) : RecyclerView.ViewHolder(itemView) {
+  class PagerVH(
+    itemView: View,
+    private val imageLoader: ImageLoader
+  ) : RecyclerView.ViewHolder(itemView) {
     private val logo = itemView.logo
     private val day = itemView.day
     private val temperature = itemView.temperature
@@ -35,11 +40,19 @@ class FutureForecastAdapter(private val imageLoader: ImageLoader) : BaseAdapter<
 
       day.text = DateHelper.parseIsoStringToDayOfWeek(model.day, daysArr)
 
-      val singMinRes = if (model.minTemp <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
-      val singMaxRes = if (model.maxTemp <= 0) R.string.home_tempWithMinus else R.string.home_tempWithPlus
+      val singMinRes = if (model.minTemp <= 0) {
+        R.string.home_tempWithMinus
+      } else {
+        R.string.home_tempWithPlus
+      }
+      val singMaxRes = if (model.maxTemp <= 0) {
+        R.string.home_tempWithMinus
+      } else {
+        R.string.home_tempWithPlus
+      }
       val minTemp = ctx.getString(singMinRes, model.minTemp)
       val maxTemp = ctx.getString(singMaxRes, model.maxTemp)
-      temperature.text =  ctx.getString(R.string.futureForecast_tempMinMax, minTemp, maxTemp)
+      temperature.text = ctx.getString(R.string.futureForecast_tempMinMax, minTemp, maxTemp)
 
       imageLoader.loadImage(model.iconId.replace("n", "d"), logo)
     }

@@ -11,18 +11,17 @@ import ru.boronin.simpleweather.model.common.data.WeatherResponse
  */
 interface WeatherApi {
 
-    @GET("data/2.5/weather?lang=RU&units=metric")
-    fun getWeather(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float,
-        @Query("appid") appid: String
-    ): Single<WeatherResponse>
+  @GET("data/2.5/weather?lang=RU&units=metric")
+  fun getWeather(
+    @Query("lat") lat: Float,
+    @Query("lon") lon: Float,
+    @Query("appid") appid: String
+  ): Single<WeatherResponse>
 
-
-    @GET("data/2.5/forecast?lang=RU&units=metric")
-    fun getDetailedWeather(
-        @Query("lat") lat: Float,
-        @Query("lon") lon: Float,
-        @Query("appid") appid: String
-    ): Single<DetailedWeatherResponse>
+  @GET("data/2.5/forecast?lang=RU&units=metric")
+  fun getDetailedWeather(
+    @Query("lat") lat: Float,
+    @Query("lon") lon: Float,
+    @Query("appid") appid: String
+  ): Single<DetailedWeatherResponse>
 }

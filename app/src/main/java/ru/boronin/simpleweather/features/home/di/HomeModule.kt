@@ -12,24 +12,22 @@ import ru.boronin.simpleweather.features.home.ui.HomePresenter
 
 @Module
 class HomeModule {
-    
-    @Provides
-    fun provideNavigator(
-        navigatorHandler: NavigatorHandler,
-        fragment: HomeFragment
-    ): HomeNavigator {
-        return HomeNavigatorImpl().apply {
-            globalHandler = navigatorHandler
-            localHandler = fragment.getLocalNavigator()
-        }
+
+  @Provides
+  fun provideNavigator(
+    navigatorHandler: NavigatorHandler,
+    fragment: HomeFragment
+  ): HomeNavigator {
+    return HomeNavigatorImpl().apply {
+      globalHandler = navigatorHandler
+      localHandler = fragment.getLocalNavigator()
     }
+  }
 
-    @Provides
-    fun providePresenter(
-        navigator: HomeNavigator,
-        interactor: WeatherInteractor,
-        locationProvider: LocationProvider
-    ) = HomePresenter(navigator, interactor, locationProvider)
-
-
+  @Provides
+  fun providePresenter(
+    navigator: HomeNavigator,
+    interactor: WeatherInteractor,
+    locationProvider: LocationProvider
+  ) = HomePresenter(navigator, interactor, locationProvider)
 }

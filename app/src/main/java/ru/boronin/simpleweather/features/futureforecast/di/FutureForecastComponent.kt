@@ -6,13 +6,11 @@ import ru.boronin.simpleweather.features.futureforecast.ui.FutureForecastFragmen
 
 @Subcomponent(modules = [FutureForecastModule::class])
 interface FutureForecastComponent {
-    
-    @Subcomponent.Factory
-    interface Factory {
-        fun create(@BindsInstance fragment: FutureForecastFragment): FutureForecastComponent
-    }
 
-    fun inject(fragment: FutureForecastFragment)
-}   
-        
-        
+  @Subcomponent.Factory
+  interface Factory {
+    fun create(@BindsInstance fragment: FutureForecastFragment): FutureForecastComponent
+  }
+
+  fun inject(fragment: FutureForecastFragment)
+}

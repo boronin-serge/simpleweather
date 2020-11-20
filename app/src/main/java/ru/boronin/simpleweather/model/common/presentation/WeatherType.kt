@@ -9,88 +9,88 @@ import java.util.*
  */
 enum class WeatherType {
 
-    // region Atmosphere
+  // region Atmosphere
 
-    FOG {
-        override fun getFirstColor() = R.color.foggyFirstColor
-        override fun getSecondColor() = R.color.foggySecondColor
-    },
-    MIST {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    SMOKE {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    HAZE {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    DUST {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    SAND {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    ASH {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    SQUALL {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
-    TORNADO {
-        override fun getFirstColor() = FOG.getFirstColor()
-        override fun getSecondColor() = FOG.getFirstColor()
-    },
+  FOG {
+    override fun getFirstColor() = R.color.foggyFirstColor
+    override fun getSecondColor() = R.color.foggySecondColor
+  },
+  MIST {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  SMOKE {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  HAZE {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  DUST {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  SAND {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  ASH {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  SQUALL {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
+  TORNADO {
+    override fun getFirstColor() = FOG.getFirstColor()
+    override fun getSecondColor() = FOG.getFirstColor()
+  },
 
-    // endregion
+  // endregion
 
-    // region Common
+  // region Common
 
-    RAIN {
-        override fun getFirstColor() = R.color.rainFirstColor
-        override fun getSecondColor() = R.color.rainSecondColor
-    },
-    SNOW {
-        override fun getFirstColor() = R.color.snowFirstColor
-        override fun getSecondColor() = R.color.snowSecondColor
-    },
-    CLEAR {
-        override fun getFirstColor() = R.color.sunnyFirstColor
-        override fun getSecondColor() = R.color.sunnySecondColor
-    },
-    CLOUDS {
-        override fun getFirstColor() = R.color.cloudsFirstColor
-        override fun getSecondColor() = R.color.cloudsSecondColor
-    },
-    THUNDERSTORM {
-        override fun getFirstColor() = R.color.sunnyFirstColor
-        override fun getSecondColor() = R.color.sunnySecondColor
-    },
-    DRIZZLE {
-        override fun getFirstColor() = R.color.drizzleFirstColor
-        override fun getSecondColor() = R.color.drizzleSecondColor
-    },
+  RAIN {
+    override fun getFirstColor() = R.color.rainFirstColor
+    override fun getSecondColor() = R.color.rainSecondColor
+  },
+  SNOW {
+    override fun getFirstColor() = R.color.snowFirstColor
+    override fun getSecondColor() = R.color.snowSecondColor
+  },
+  CLEAR {
+    override fun getFirstColor() = R.color.sunnyFirstColor
+    override fun getSecondColor() = R.color.sunnySecondColor
+  },
+  CLOUDS {
+    override fun getFirstColor() = R.color.cloudsFirstColor
+    override fun getSecondColor() = R.color.cloudsSecondColor
+  },
+  THUNDERSTORM {
+    override fun getFirstColor() = R.color.sunnyFirstColor
+    override fun getSecondColor() = R.color.sunnySecondColor
+  },
+  DRIZZLE {
+    override fun getFirstColor() = R.color.drizzleFirstColor
+    override fun getSecondColor() = R.color.drizzleSecondColor
+  },
 
-    // endregion
+  // endregion
 
-    ERROR {
-        override fun getFirstColor() = R.color.errorFirstColor
-        override fun getSecondColor() = R.color.errorSecondColor
-    };
+  ERROR {
+    override fun getFirstColor() = R.color.errorFirstColor
+    override fun getSecondColor() = R.color.errorSecondColor
+  };
 
-    abstract fun getFirstColor(): Int
-    abstract fun getSecondColor(): Int
+  abstract fun getFirstColor(): Int
+  abstract fun getSecondColor(): Int
 
-    companion object {
-        fun find(typeStr: String?): WeatherType {
-            val query = typeStr?.toUpperCase(Locale.ENGLISH) ?: DEFAULT_STRING
-            return values().find { it.name == query } ?: ERROR
-        }
+  companion object {
+    fun find(typeStr: String?): WeatherType {
+      val query = typeStr?.toUpperCase(Locale.ENGLISH) ?: DEFAULT_STRING
+      return values().find { it.name == query } ?: ERROR
     }
+  }
 }

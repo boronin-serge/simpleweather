@@ -12,121 +12,125 @@ import ru.boronin.simpleweather.features.home.navigator.HomeNavigator
 import ru.boronin.simpleweather.model.common.presentation.ForecastModel
 
 class HomePresenter(
-    private val navigator: HomeNavigator,
-    private val interactor: WeatherInteractor,
-    private val locationProvider: LocationProvider
+  private val navigator: HomeNavigator,
+  private val interactor: WeatherInteractor,
+  private val locationProvider: LocationProvider
 ) : BasePresenter<HomeView>(), HomeAction, ILocationPresenter {
 
-    private var lastWeather: ForecastModel? = null
-    private var currentWeatherMode  = HomeFragment.WeatherMode.TODAY
+  private var lastWeather: ForecastModel? = null
+  private var currentWeatherMode = HomeFragment.WeatherMode.TODAY
 
-    override fun onFirstViewAttach() {
-        view?.setWeatherMode(currentWeatherMode)
+  override fun onFirstViewAttach() {
+    view?.setWeatherMode(currentWeatherMode)
+    getCachedForecast()
+  }
+
+  override fun checkWeatherAction() {
+    locationProvider.getLastKnownLocation { latLng ->
+      val hasConnection = view?.hasConnection() ?: DEFAULT_BOOLEAN
+
+      if (hasConnection) {
+        loadForecast(latLng.lat, latLng.lng)
+      } else {
+        view?.showErrorToast()
         getCachedForecast()
+      }
+    }
+  }
+
+  override fun showTodayWeatherAction() {
+    lastWeather?.todayWeather?.let { view?.updateList(it) }
+    currentWeatherMode = HomeFragment.WeatherMode.TODAY
+    view?.setWeatherMode(currentWeatherMode)
+  }
+
+  override fun showTomorrowWeatherAction() {
+    lastWeather?.tomorrowWeather?.let { view?.updateList(it) }
+    currentWeatherMode = HomeFragment.WeatherMode.TOMORROW
+    view?.setWeatherMode(currentWeatherMode)
+  }
+
+  override fun showNextFiveDaysWeatherAction() {
+    navigator.openFutureForecast()
+  }
+
+  // region ILocationPresenter
+
+  override fun onLocationNeeded() {
+    view?.checkLocationPermissions()
+  }
+
+  override fun onPermissionGranted(permission: Permission, isOnDemand: Boolean) {
+    checkWeatherAction()
+  }
+
+  // endregion
+
+  // region private
+
+  private fun loadForecast(lat: Float, lng: Float) {
+    if (lat == DEFAULT_FLOAT && lng == DEFAULT_FLOAT) {
+      getCachedForecast(hasLocation = false)
+      return
     }
 
-    override fun checkWeatherAction() {
-        locationProvider.getLastKnownLocation { latLng ->
-            val hasConnection = view?.hasConnection() ?: DEFAULT_BOOLEAN
-
-            if (hasConnection) {
-                loadForecast(latLng.lat, latLng.lng)
-            } else {
-                view?.showErrorToast()
-                getCachedForecast()
-            }
+    subscriptions add interactor.getWeather(lat, lng)
+      .progress { showProgress(it) }
+      .subscribe(
+        {
+          if (it != null) {
+            handleForecast(it)
+          }
+        },
+        {
+          view?.showErrorToast()
+          getCachedForecast()
         }
-    }
+      )
+  }
 
-    override fun showTodayWeatherAction() {
-        lastWeather?.todayWeather?.let { view?.updateList(it) }
-        currentWeatherMode = HomeFragment.WeatherMode.TODAY
-        view?.setWeatherMode(currentWeatherMode)
-    }
+  private fun getCachedForecast(hasLocation: Boolean = true) {
+    subscriptions add interactor.getCachedWeather()
+      .progress { showProgress(it) }
+      .subscribe(
+        {
+          if (it != null) {
+            handleForecast(it)
+          }
+        },
+        {
+          view?.showErrorPage()
+        },
+        {
+          if (hasLocation.not()) {
+            view?.showNotLocationPage()
+          }
+        }
+      )
+  }
 
-    override fun showTomorrowWeatherAction() {
-        lastWeather?.tomorrowWeather?.let { view?.updateList(it) }
+  private fun handleForecast(forecastModel: ForecastModel) {
+    lastWeather = forecastModel
+    view?.updateView(forecastModel)
+    lastWeather?.todayWeather?.let {
+      if (it.isEmpty()) {
         currentWeatherMode = HomeFragment.WeatherMode.TOMORROW
-        view?.setWeatherMode(currentWeatherMode)
+        view?.enableToday(false)
+      } else {
+        view?.enableToday(true)
+      }
     }
 
-    override fun showNextFiveDaysWeatherAction() {
-        navigator.openFutureForecast()
+    when (currentWeatherMode) {
+      HomeFragment.WeatherMode.TODAY -> showTodayWeatherAction()
+      HomeFragment.WeatherMode.TOMORROW -> showTomorrowWeatherAction()
     }
+  }
 
-    // region ILocationPresenter
+  private fun showProgress(show: Boolean) {
+    val isActionHide = show.not()
+    if (isActionHide || lastWeather == null) view?.setVisibleLoading(show)
+  }
 
-    override fun onLocationNeeded() {
-        view?.checkLocationPermissions()
-    }
-
-    override fun onPermissionGranted(permission: Permission, isOnDemand: Boolean) {
-        checkWeatherAction()
-    }
-
-    // endregion
-
-
-    // region private
-
-    private fun loadForecast(lat: Float, lng: Float) {
-        if (lat == DEFAULT_FLOAT && lng == DEFAULT_FLOAT) {
-            getCachedForecast(hasLocation = false)
-            return
-        }
-
-        subscriptions add interactor.getWeather(lat, lng)
-            .progress { showProgress(it) }
-            .subscribe({
-                if (it != null) {
-                    handleForecast(it)
-                }
-            }, {
-                view?.showErrorToast()
-                getCachedForecast()
-            })
-    }
-
-    private fun getCachedForecast(hasLocation: Boolean = true) {
-        subscriptions add interactor.getCachedWeather()
-            .progress { showProgress(it) }
-            .subscribe({
-                if (it != null) {
-                    handleForecast(it)
-                }
-            }, {
-                view?.showErrorPage()
-            }, {
-                if (hasLocation.not()) {
-                    view?.showNotLocationPage()
-                }
-            })
-    }
-
-    private fun handleForecast(forecastModel: ForecastModel) {
-        lastWeather = forecastModel
-        view?.updateView(forecastModel)
-        lastWeather?.todayWeather?.let {
-            if (it.isEmpty()) {
-                currentWeatherMode = HomeFragment.WeatherMode.TOMORROW
-                view?.enableToday(false)
-            } else {
-                view?.enableToday(true)
-            }
-        }
-
-        when(currentWeatherMode) {
-            HomeFragment.WeatherMode.TODAY -> showTodayWeatherAction()
-            HomeFragment.WeatherMode.TOMORROW -> showTomorrowWeatherAction()
-        }
-    }
-
-    private fun showProgress(show: Boolean) {
-        val isActionHide = show.not()
-        if (isActionHide || lastWeather == null) view?.setVisibleLoading(show)
-    }
-
-    // endregion
-
-
+  // endregion
 }

@@ -13,10 +13,10 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
 
-    fun activityFactory(): ActivityComponent.Factory
+  fun activityFactory(): ActivityComponent.Factory
 
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance context: Context): AppComponent
-    }
+  @Component.Factory
+  interface Factory {
+    fun create(@BindsInstance context: Context): AppComponent
+  }
 }

@@ -15,16 +15,16 @@ import ru.boronin.simpleweather.features.main.ui.MainActivity
 @Subcomponent(modules = [ActivityModule::class])
 interface ActivityComponent {
 
-    @Subcomponent.Factory
-    interface Factory {
-        fun create(
-            @BindsInstance activity: FragmentActivity,
-            @BindsInstance containerId: Int
-        ): ActivityComponent
-    }
+  @Subcomponent.Factory
+  interface Factory {
+    fun create(
+      @BindsInstance activity: FragmentActivity,
+      @BindsInstance containerId: Int
+    ): ActivityComponent
+  }
 
-    fun homeFactory(): HomeComponent.Factory
-    fun futureForecastFactory(): FutureForecastComponent.Factory
+  fun homeFactory(): HomeComponent.Factory
+  fun futureForecastFactory(): FutureForecastComponent.Factory
 
-    fun inject(activity: MainActivity)
+  fun inject(activity: MainActivity)
 }

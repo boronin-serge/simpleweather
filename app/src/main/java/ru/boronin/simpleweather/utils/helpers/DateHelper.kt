@@ -69,7 +69,7 @@ object DateHelper {
       }
 
       val day = date.get(DAY_OF_MONTH)
-      val month = monthArr[date.get(MONTH)].substring(0,3)
+      val month = monthArr[date.get(MONTH)].substring(0, 3)
       val year = date.get(YEAR)
       val hour = date.get(HOUR_OF_DAY)
       val min = date.get(MINUTE)
@@ -83,7 +83,6 @@ object DateHelper {
       "Дата неизвестна"
     }
   }
-
 
   /**
    * yyyy-MM-dd -> dd.MM.yyyy
@@ -130,7 +129,6 @@ object DateHelper {
     return parseIsoStringToTime(parseIsoStringToDate(rawDate, false).time)
   }
 
-
   /**
    * millisecs -> HH:mm
    */
@@ -153,8 +151,8 @@ object DateHelper {
   }
 
   /**
-  * millisecs -> Monday
-  */
+   * millisecs -> Monday
+   */
   fun parseIsoStringToDayOfWeek(rawDate: Long, weekArr: Array<String>): String {
     return try {
       val date = getInstance().apply {

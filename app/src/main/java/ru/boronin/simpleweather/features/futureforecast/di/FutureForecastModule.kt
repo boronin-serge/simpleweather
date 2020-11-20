@@ -9,15 +9,15 @@ import ru.boronin.simpleweather.features.futureforecast.ui.FutureForecastFragmen
 
 @Module
 class FutureForecastModule {
-    
-    @Provides
-    fun provideNavigator(
-        navigatorHandler: NavigatorHandler,
-        fragment: FutureForecastFragment
-    ): FutureForecastNavigator {
-        return FutureForecastNavigatorImpl().apply {
-            globalHandler = navigatorHandler
-            localHandler = fragment.getLocalNavigator()
-        }
+
+  @Provides
+  fun provideNavigator(
+    navigatorHandler: NavigatorHandler,
+    fragment: FutureForecastFragment
+  ): FutureForecastNavigator {
+    return FutureForecastNavigatorImpl().apply {
+      globalHandler = navigatorHandler
+      localHandler = fragment.getLocalNavigator()
     }
+  }
 }

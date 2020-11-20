@@ -19,18 +19,18 @@ import ru.boronin.simpleweather.data.network.NetworkSource
 @Module
 class AppModule {
 
-    @Provides
-    fun provideRetrofit() = RetrofitWrapper(BASE_URL, OkHttpWrapper())
+  @Provides
+  fun provideRetrofit() = RetrofitWrapper(BASE_URL, OkHttpWrapper())
 
-    @Provides
-    fun provideNetworkSource(retrofitWrapper: RetrofitWrapper) = NetworkSource(retrofitWrapper)
+  @Provides
+  fun provideNetworkSource(retrofitWrapper: RetrofitWrapper) = NetworkSource(retrofitWrapper)
 
-    @Provides
-    fun provideCacheSource(database: ForecastDatabase) = CacheSource(database)
+  @Provides
+  fun provideCacheSource(database: ForecastDatabase) = CacheSource(database)
 
-    @Provides
-    fun provideRxSchedulerProvider(): SchedulersProvider = AppSchedulers()
+  @Provides
+  fun provideRxSchedulerProvider(): SchedulersProvider = AppSchedulers()
 
-    @Provides
-    fun provideDatabase(context: Context) = ForecastDatabase.getDatabase(context)
+  @Provides
+  fun provideDatabase(context: Context) = ForecastDatabase.getDatabase(context)
 }

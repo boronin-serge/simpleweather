@@ -3,33 +3,33 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:animateLayoutChanges="true" >
+  android:animateLayoutChanges="true">
 
-    <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar"
-      style="@style/toolbarStyle"
-      android:visibility="gone"
-      tools:visibility="visible" />
+  <androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    style="@style/toolbarStyle"
+    android:visibility="gone"
+    tools:visibility="visible" />
 
-    <FrameLayout
-      android:id="@+id/container"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_below="@+id/toolbar" />
+  <FrameLayout
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/toolbar" />
 
-    <FrameLayout
-      android:id="@+id/vgLoading"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="#80FFFFFF"
-      android:clickable="true"
-      android:focusable="true"
-      android:translationZ="5dp"
-      android:visibility="gone" >
+  <FrameLayout
+    android:id="@+id/vgLoading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80FFFFFF"
+    android:clickable="true"
+    android:focusable="true"
+    android:translationZ="5dp"
+    android:visibility="gone">
 
-        <ProgressBar
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center" />
-    </FrameLayout>
+    <ProgressBar
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center" />
+  </FrameLayout>
 </RelativeLayout>

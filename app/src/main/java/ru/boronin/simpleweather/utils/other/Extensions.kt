@@ -14,9 +14,9 @@ import ru.boronin.simpleweather.common.presentation.location.ILocationPresenter
 
 @SuppressLint("CheckResult")
 fun Activity.requestLocationPermission(presenter: ILocationPresenter, isOnDemand: Boolean) {
-    RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION)
-        .schedulers(AndroidSchedulers.mainThread(), AndroidSchedulers.mainThread())
-        .subscribe { permission ->
-            presenter.onPermissionGranted(permission, isOnDemand)
-        }
+  RxPermissions(this).requestEach(Manifest.permission.ACCESS_FINE_LOCATION)
+    .schedulers(AndroidSchedulers.mainThread(), AndroidSchedulers.mainThread())
+    .subscribe { permission ->
+      presenter.onPermissionGranted(permission, isOnDemand)
+    }
 }

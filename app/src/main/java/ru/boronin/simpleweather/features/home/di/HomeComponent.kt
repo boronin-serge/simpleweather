@@ -6,13 +6,11 @@ import ru.boronin.simpleweather.features.home.ui.HomeFragment
 
 @Subcomponent(modules = [HomeModule::class])
 interface HomeComponent {
-    
-    @Subcomponent.Factory
-    interface Factory {
-        fun create(@BindsInstance fragment: HomeFragment): HomeComponent
-    }
 
-    fun inject(fragment: HomeFragment)
-}   
-        
-        
+  @Subcomponent.Factory
+  interface Factory {
+    fun create(@BindsInstance fragment: HomeFragment): HomeComponent
+  }
+
+  fun inject(fragment: HomeFragment)
+}

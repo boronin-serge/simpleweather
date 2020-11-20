@@ -8,34 +8,35 @@ import ru.boronin.simpleweather.common.presentation.BaseFragment
 /**
  * Created by Sergey Boronin on 29.01.2020.
  */
-abstract class BaseView<V : MvpView, P : MvpPresenter<V>, C> : MvpDelegateCallback<V, P>,
-    BaseFragment(),
-    MvpView {
+abstract class BaseView<V : MvpView, P : MvpPresenter<V>, C> :
+  MvpDelegateCallback<V, P>,
+  BaseFragment(),
+  MvpView {
 
-    protected var component: C? = null
+  protected var component: C? = null
 
-    override val view: V
-        get() = this as V
+  override val view: V
+    get() = this as V
 
-    abstract fun onViewBound(view: View)
+  abstract fun onViewBound(view: View)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
-        onViewBound(view)
+    onViewBound(view)
 
-        presenter.attachView(this.view)
-    }
+    presenter.attachView(this.view)
+  }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+  override fun onDestroyView() {
+    super.onDestroyView()
 
-        presenter.detachView()
-    }
+    presenter.detachView()
+  }
 
-    override fun clearDependencies() {
-        component = null
-    }
+  override fun clearDependencies() {
+    component = null
+  }
 
-    override fun hasConnection() = requireContext().isConnected()
+  override fun hasConnection() = requireContext().isConnected()
 }

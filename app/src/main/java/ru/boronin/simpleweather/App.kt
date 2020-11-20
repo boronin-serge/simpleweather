@@ -7,19 +7,19 @@ import ru.boronin.simpleweather.di.DaggerAppComponent
 
 open class App : Application() {
 
-    val appComponent: AppComponent by lazy {
-        DaggerAppComponent.factory().create(applicationContext)
-    }
+  val appComponent: AppComponent by lazy {
+    DaggerAppComponent.factory().create(applicationContext)
+  }
 
-    override fun onCreate() {
-        super.onCreate()
+  override fun onCreate() {
+    super.onCreate()
 
-        if (BuildConfig.DEBUG) {
-            initStetho()
-        }
+    if (BuildConfig.DEBUG) {
+      initStetho()
     }
+  }
 
-    private fun initStetho() {
-        Stetho.initializeWithDefaults(this)
-    }
+  private fun initStetho() {
+    Stetho.initializeWithDefaults(this)
+  }
 }

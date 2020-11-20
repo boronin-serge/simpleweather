@@ -16,60 +16,60 @@ import ru.boronin.simpleweather.model.common.presentation.ForecastModel
  * Created by Sergey Boronin on 06.03.2020.
  */
 class WeatherInteractor(
-    private val weatherRepository: WeatherRepository,
-    private val currentWeatherMapper: CurrentWeatherMapper,
-    private val detailedWeatherMapper: DetailedWeatherMapper,
-    private val schedulersProvider: SchedulersProvider
+  private val weatherRepository: WeatherRepository,
+  private val currentWeatherMapper: CurrentWeatherMapper,
+  private val detailedWeatherMapper: DetailedWeatherMapper,
+  private val schedulersProvider: SchedulersProvider
 ) {
-    private var cachedWeather: ForecastModel? = null
+  private var cachedWeather: ForecastModel? = null
 
-    fun getWeather(lat: Float, lon: Float): Single<ForecastModel?> {
-        var currentWeather: CurrentWeatherModel? = null
-        return getCurrentWeather(lat, lon).flatMap {
-            currentWeather = it
-            getDetailedWeather(lat, lon)
-        }.map { detailedWeather ->
-            cachedWeather = ForecastModel(
-                currentWeather!!.locationName ?: DEFAULT_STRING,
-                currentWeather!!.date,
-                currentWeather!!.temperature,
-                currentWeather!!.temperatureDesc,
-                currentWeather!!.feelsLike,
-                currentWeather!!.weatherType,
-                currentWeather!!.iconId,
-                detailedWeather.todayWeather.sortedBy { it.time },
-                detailedWeather.tomorrowWeather,
-                detailedWeather.nextFiveDays.takeLast(5)
-            )
-            cachedWeather?.also {
-                saveForecast(it).subscribe()
-            }
-        }.schedulers(schedulersProvider)
-    }
-
-    fun getLastLoadedWeather() = cachedWeather
-
-    fun getCachedWeather() = weatherRepository.getCachedForecast()
-        .doOnSuccess { cachedWeather = it }
-        .schedulers(schedulersProvider)
-
-    // region private
-
-    private fun saveForecast(forecastModel: ForecastModel) = Completable.fromCallable {
-        weatherRepository.saveForecast(forecastModel)
+  fun getWeather(lat: Float, lon: Float): Single<ForecastModel?> {
+    var currentWeather: CurrentWeatherModel? = null
+    return getCurrentWeather(lat, lon).flatMap {
+      currentWeather = it
+      getDetailedWeather(lat, lon)
+    }.map { detailedWeather ->
+      cachedWeather = ForecastModel(
+        currentWeather!!.locationName ?: DEFAULT_STRING,
+        currentWeather!!.date,
+        currentWeather!!.temperature,
+        currentWeather!!.temperatureDesc,
+        currentWeather!!.feelsLike,
+        currentWeather!!.weatherType,
+        currentWeather!!.iconId,
+        detailedWeather.todayWeather.sortedBy { it.time },
+        detailedWeather.tomorrowWeather,
+        detailedWeather.nextFiveDays.takeLast(5)
+      )
+      cachedWeather?.also {
+        saveForecast(it).subscribe()
+      }
     }.schedulers(schedulersProvider)
+  }
 
-    private fun getCurrentWeather(lat: Float, lon: Float): Single<CurrentWeatherModel> {
-        return weatherRepository.getCurrentWeather(lat, lon).map {
-            currentWeatherMapper.map(it)
-        }
+  fun getLastLoadedWeather() = cachedWeather
+
+  fun getCachedWeather() = weatherRepository.getCachedForecast()
+    .doOnSuccess { cachedWeather = it }
+    .schedulers(schedulersProvider)
+
+  // region private
+
+  private fun saveForecast(forecastModel: ForecastModel) = Completable.fromCallable {
+    weatherRepository.saveForecast(forecastModel)
+  }.schedulers(schedulersProvider)
+
+  private fun getCurrentWeather(lat: Float, lon: Float): Single<CurrentWeatherModel> {
+    return weatherRepository.getCurrentWeather(lat, lon).map {
+      currentWeatherMapper.map(it)
     }
+  }
 
-    private fun getDetailedWeather(lat: Float, lon: Float): Single<DetailedForecastModel> {
-        return weatherRepository.getDetailedWeather(lat, lon).map {
-            detailedWeatherMapper.map(it)
-        }
+  private fun getDetailedWeather(lat: Float, lon: Float): Single<DetailedForecastModel> {
+    return weatherRepository.getDetailedWeather(lat, lon).map {
+      detailedWeatherMapper.map(it)
     }
+  }
 
-    // endregion
+  // endregion
 }
