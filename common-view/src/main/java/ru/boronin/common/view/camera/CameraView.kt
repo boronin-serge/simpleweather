@@ -60,11 +60,10 @@ class CameraView @JvmOverloads constructor(
     }
 
   private val surfaceTextureListener = object : SurfaceTextureListener {
-    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture?, width: Int, height: Int) { }
-    override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) { }
-    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean = false
-
-    override fun onSurfaceTextureAvailable(surface: SurfaceTexture?, width: Int, height: Int) {
+    override fun onSurfaceTextureSizeChanged(surface: SurfaceTexture, width: Int, height: Int) { }
+    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) { }
+    override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean = false
+    override fun onSurfaceTextureAvailable(surface: SurfaceTexture, width: Int, height: Int) {
       checkPermissionsAndOpenCamera(width, height)
     }
   }

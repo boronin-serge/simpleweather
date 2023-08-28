@@ -7,9 +7,9 @@ allprojects {
 
 ext {
   androidBuildToolsVersion        = "29.0.2"
-  androidMinSdkVersion            = 23
-  androidTargetSdkVersion         = 29
-  androidCompileSdkVersion        = 29
+  androidMinSdkVersion            = 24
+  androidTargetSdkVersion         = 33
+  androidCompileSdkVersion        = 33
 
   // UI
   appCompatVersion                = '1.1.0'
@@ -23,6 +23,7 @@ ext {
   // Network
   retrofitVersion                 = '2.5.0'
   retrofitLoggingVersion          = '4.1.1'
+  okhttpVersion                   = '4.9.2'
 
   // Database
   roomVersion                     = '2.4.0'
@@ -73,6 +74,7 @@ ext {
       retrofit:                   "com.squareup.retrofit2:retrofit:${retrofitVersion}",
       retrofitLogging:            "com.squareup.okhttp3:logging-interceptor:${retrofitLoggingVersion}",
       gsonRetrofitConverter:      "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+      okhttp:                     "com.squareup.okhttp3:okhttp:${okhttpVersion}",
 
       // location
       playServicesLocation:       "com.google.android.gms:play-services-location:${locationServiceVersion}"

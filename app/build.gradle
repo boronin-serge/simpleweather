@@ -9,83 +9,89 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 
 android {
-    def ext = rootProject.ext
-    compileSdkVersion ext.androidCompileSdkVersion
-    buildToolsVersion ext.androidBuildToolsVersion
-    defaultConfig {
-        applicationId "ru.boronin.simpleweather"
-        minSdkVersion ext.androidMinSdkVersion
-        targetSdkVersion ext.androidTargetSdkVersion
-        versionCode 3
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  def ext = rootProject.ext
+  compileSdkVersion ext.androidCompileSdkVersion
+  buildToolsVersion ext.androidBuildToolsVersion
+  defaultConfig {
+    applicationId "ru.boronin.simpleweather"
+    minSdkVersion ext.androidMinSdkVersion
+    targetSdkVersion ext.androidTargetSdkVersion
+    versionCode 4
+    versionName "1.1"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    ktlint {
-        android.set(true)
-        outputColorName.set("RED")
-        additionalEditorconfigFile.set(file(".editorconfig"))
+  }
+  ktlint {
+    android.set(true)
+    outputColorName.set("RED")
+    additionalEditorconfigFile.set(file(".editorconfig"))
 
-        reporters {
-            reporter "plain"
-            reporter "checkstyle"
-            reporter "html"
-        }
+    reporters {
+      reporter "plain"
+      reporter "checkstyle"
+      reporter "html"
     }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 
 dependencies {
-    def dependencies = rootProject.ext.dependencies
-    def developmentDependencies = rootProject.ext.developmentDependencies
-    def testDependencies = rootProject.ext.testDependencies
+  def dependencies = rootProject.ext.dependencies
+  def developmentDependencies = rootProject.ext.developmentDependencies
+  def testDependencies = rootProject.ext.testDependencies
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Core modules
-    implementation project(':core-api')
-    implementation project(':core-android')
-    implementation project(':core-android-locationprovider-impl')
-    implementation project(':common-utils')
-    implementation project(':common-rx-utils')
-    implementation project(':core-rx-schedulers-impl')
-    implementation project(':common-plugins')
-    implementation project(':common-navigation')
-    implementation project(':common-network')
-    implementation project(':common-view')
-    implementation project(':common-extension')
+  // Core modules
+  implementation project(':core-api')
+  implementation project(':core-android')
+  implementation project(':core-android-locationprovider-impl')
+  implementation project(':common-utils')
+  implementation project(':common-rx-utils')
+  implementation project(':core-rx-schedulers-impl')
+  implementation project(':common-plugins')
+  implementation project(':common-navigation')
+  implementation project(':common-network')
+  implementation project(':common-view')
+  implementation project(':common-extension')
 
-    // Network
-    implementation dependencies.retrofit
-    implementation dependencies.retrofitLogging
-    implementation dependencies.retrofitAdapterRxJava
-    implementation dependencies.gsonRetrofitConverter
+  // Network
+  implementation dependencies.retrofit
+  implementation dependencies.retrofitLogging
+  implementation dependencies.retrofitAdapterRxJava
+  implementation dependencies.gsonRetrofitConverter
+  implementation dependencies.okhttp
 
-    implementation dependencies.rxJava
-    implementation dependencies.rxAndroid
-    implementation dependencies.appcompat
-    implementation dependencies.material
-    implementation dependencies.rxPermissions
-    implementation dependencies.constraintlayout
-    implementation dependencies.glide
-    implementation developmentDependencies.stetho
+  implementation dependencies.rxJava
+  implementation dependencies.rxAndroid
+  implementation dependencies.appcompat
+  implementation dependencies.material
+  implementation dependencies.rxPermissions
+  implementation dependencies.constraintlayout
+  implementation dependencies.glide
+  implementation developmentDependencies.stetho
 
-    implementation developmentDependencies.coreKtx
-    implementation developmentDependencies.kotlinStdlibJdk7
+  implementation developmentDependencies.coreKtx
+  implementation developmentDependencies.kotlinStdlibJdk7
 
-    // room
-    implementation dependencies.room
-    kapt dependencies.roomAnnotationProcessor
+  // room
+  implementation dependencies.room
+  kapt dependencies.roomAnnotationProcessor
 
-    // Dagger
-    implementation developmentDependencies.dagger
-    kapt developmentDependencies.daggerCompiler
+  // Dagger
+  implementation developmentDependencies.dagger
+  kapt developmentDependencies.daggerCompiler
 
-    testImplementation testDependencies.junit
-    androidTestImplementation testDependencies.androidJunit
-    androidTestImplementation testDependencies.espresso
+  testImplementation testDependencies.junit
+  androidTestImplementation testDependencies.androidJunit
+  androidTestImplementation testDependencies.espresso
 }
