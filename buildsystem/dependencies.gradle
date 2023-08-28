@@ -25,7 +25,7 @@ ext {
   retrofitLoggingVersion          = '4.1.1'
 
   // Database
-  roomVersion                     = '2.2.5'
+  roomVersion                     = '2.4.0'
 
   // RxJava
   rxJavaVersion                   = '2.2.8'
